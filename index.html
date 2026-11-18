@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1B365D">
+<meta name="description" content="工程材料及热处理C · 高效记忆宝典：考点挖空背诵、20个牌号翻转卡、48道真题自测与自动错题本。">
+<title>工程材料及热处理C · 高效记忆刷题台</title>
+<style>
+:root{
+  --ink:#1B365D; --ink-2:#24476F; --accent:#2B6CB0; --accent-l:#3E8ED0;
+  --amber:#FFFBEB; --amber-b:#F0DBA0; --amber-t:#8A5A00;
+  --bg:#F4F7FB; --card:#FFFFFF; --line:#E2E8F0; --line-2:#EDF1F6;
+  --text:#22303F; --text-2:#43566B; --muted:#6B7C93;
+  --green:#2F855A; --green-bg:#EAF7EF; --red:#C53030; --red-bg:#FDECEC;
+  --r:16px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--text);font-size:15px;line-height:1.72;
+  overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%;
+}
+b,strong{font-weight:800}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+
+/* ============ HEADER ============ */
+.hd{
+  position:relative;overflow:hidden;color:#fff;
+  background:linear-gradient(135deg,#16294A 0%,#1B365D 42%,#2B6CB0 100%);
+  padding:calc(16px + env(safe-area-inset-top)) 16px 18px;
+}
+.hd::before{
+  content:"";position:absolute;inset:0;opacity:.10;
+  background-image:linear-gradient(rgba(255,255,255,.55) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.55) 1px,transparent 1px);
+  background-size:26px 26px;
+}
+.hd::after{
+  content:"";position:absolute;right:-56px;top:-70px;width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(120,180,255,.42),transparent 68%);
+}
+.hd-in{position:relative;z-index:1;max-width:880px;margin:0 auto}
+.hd-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.hd-kicker{font-size:11px;font-weight:700;letter-spacing:1.2px;opacity:.78}
+.hd h1{margin:3px 0 0;font-size:20px;line-height:1.35;letter-spacing:.4px;font-weight:800}
+.hd h1 span{font-weight:500;opacity:.8;font-size:13px;display:block;letter-spacing:.3px;margin-top:2px}
+.share-btn{
+  flex:0 0 auto;min-height:44px;padding:0 13px;border-radius:13px;
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.34);
+  color:#fff;font-size:13px;font-weight:800;white-space:nowrap;
+  display:inline-flex;align-items:center;gap:5px;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  transition:transform .15s,background .15s;
+}
+.share-btn:active{transform:scale(.96);background:rgba(255,255,255,.3)}
+.hd-stats{display:flex;gap:8px;margin-top:14px}
+.stat{
+  flex:1;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);
+  border-radius:11px;padding:6px 8px;text-align:center;line-height:1.25;
+}
+.stat b{display:block;font-size:17px;font-weight:800;letter-spacing:.5px}
+.stat span{font-size:10.5px;opacity:.8;font-weight:600}
+
+/* ============ TABS ============ */
+.tabs{
+  position:sticky;top:0;z-index:40;display:block;padding:6px;
+  background:rgba(255,255,255,.95);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+  box-shadow:0 2px 10px rgba(27,54,93,.05);
+}
+.tabs-in{display:flex;gap:5px;width:100%;max-width:880px;margin:0 auto}
+.tab{
+  flex:1;min-height:46px;border-radius:11px;font-size:13px;font-weight:800;color:#5A6B7F;
+  display:flex;align-items:center;justify-content:center;gap:4px;
+  transition:background .18s,color .18s,box-shadow .18s;
+}
+.tab i{font-style:normal;font-size:15px}
+.tab.active{background:var(--ink);color:#fff;box-shadow:0 5px 14px rgba(27,54,93,.24)}
+.tab:active{transform:scale(.985)}
+
+/* ============ LAYOUT ============ */
+main{padding:14px 12px 40px;max-width:880px;margin:0 auto}
+.panel{display:none}
+.panel.active{display:block;animation:fade .22s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}
+
+/* ============ READ BAR ============ */
+.read-bar{margin-bottom:12px}
+.chips{display:flex;gap:7px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:2px 2px 8px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{
+  flex:0 0 auto;min-height:38px;padding:0 14px;border-radius:999px;font-size:12.5px;font-weight:800;
+  background:#fff;border:1px solid var(--line);color:#5A6B7F;white-space:nowrap;
+  display:inline-flex;align-items:center;
+}
+.chip.active{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 4px 10px rgba(43,108,176,.26)}
+.cloze-row{
+  display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);
+  border-radius:13px;padding:8px 12px;min-height:56px;
+}
+.switch{position:relative;flex:0 0 50px;height:30px}
+.switch input{position:absolute;opacity:0;width:100%;height:100%;margin:0;z-index:2}
+.sl{position:absolute;inset:0;border-radius:999px;background:#CBD5E1;transition:.22s}
+.sl::after{content:"";position:absolute;left:3px;top:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.22s;box-shadow:0 1px 3px rgba(0,0,0,.22)}
+.switch input:checked + .sl{background:var(--accent)}
+.switch input:checked + .sl::after{transform:translateX(20px)}
+.cloze-txt{flex:1;line-height:1.3}
+.cloze-txt b{display:block;font-size:12.5px;color:var(--ink);font-weight:800}
+.cloze-txt span{font-size:10.5px;color:var(--muted)}
+.cloze-cnt{flex:0 0 auto;font-size:11.5px;font-weight:800;color:var(--accent);background:#EAF2FB;border-radius:999px;padding:3px 9px}
+
+/* ============ CHAPTER CARD ============ */
+.chapter{background:var(--card);border:1px solid #E4EAF2;border-radius:var(--r);overflow:hidden;margin-bottom:15px;box-shadow:0 2px 10px rgba(27,54,93,.05)}
+.ch-head{padding:13px 15px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line-2);background:linear-gradient(180deg,#FAFCFF,#fff)}
+.ch-no{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--accent);opacity:.85}
+.ch-title{font-size:15.5px;font-weight:800;color:var(--ink);line-height:1.35;margin-top:1px}
+.ch-cnt{flex:0 0 auto;font-size:10.5px;font-weight:800;color:var(--accent);background:#EAF2FB;padding:4px 8px;border-radius:999px;white-space:nowrap;margin-top:2px}
+.ch-focus{margin:11px 13px 0;padding:8px 11px;font-size:12px;line-height:1.6;color:var(--text-2);background:#F5F8FC;border-radius:10px;border-left:3px solid #CFE0F2}
+.tips{margin:11px 13px 2px;padding:11px 13px;background:var(--amber);border:1px solid var(--amber-b);border-left:4px solid #D99E00;border-radius:12px}
+.tips-h{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;color:var(--amber-t);margin-bottom:5px;letter-spacing:.3px}
+.tip{margin:6px 0;font-size:13px;line-height:1.68;color:#5C4310}
+.tip b{color:var(--amber-t)}
+.tip .blank{background:#F6E7B4}
+
+/* ============ BLOCK ============ */
+.blk{padding:0 13px 4px}
+.blk:last-child{padding-bottom:14px}
+.blk-h{position:relative;font-size:13.5px;font-weight:800;color:var(--ink);margin:16px 0 8px;padding-left:10px;line-height:1.4}
+.blk-h::before{content:"";position:absolute;left:0;top:2px;bottom:2px;width:3px;border-radius:3px;background:linear-gradient(180deg,var(--accent-l),var(--ink))}
+.li{position:relative;margin:7px 0;padding-left:13px;font-size:13.5px;line-height:1.75;color:#2C3A4B}
+.li::before{content:"";position:absolute;left:1px;top:10px;width:5px;height:5px;border-radius:50%;background:#9BB4D0}
+.li b{color:var(--ink)}
+
+/* ============ TABLE ============ */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #E4EAF2;border-radius:11px;margin:6px 0 2px;background:#fff}
+.tw table{border-collapse:collapse;width:100%;font-size:12.5px}
+.tw th{background:#EAF2FB;color:var(--ink);font-weight:800;text-align:left;padding:8px 9px;border-bottom:1px solid #D6E2F0;font-size:12px;line-height:1.45}
+.tw td{padding:8px 9px;border-bottom:1px solid #F1F5F9;vertical-align:top;line-height:1.62;color:#2C3A4B}
+.tw tr:last-child td{border-bottom:0}
+.tw tbody tr:nth-child(even){background:#FAFCFF}
+.tw td:first-child{font-weight:800;color:var(--ink);min-width:78px}
+.tw th:first-child{min-width:78px}
+.tw b{color:var(--ink)}
+.tbl-note{font-size:11.5px;color:var(--muted);line-height:1.6;margin:6px 2px 0;padding-left:8px;border-left:2px solid #DCE6F2}
+
+/* ============ NOTE ============ */
+.note{margin:10px 0 4px;padding:9px 12px;border-radius:11px;border:1px solid;font-size:12.5px;line-height:1.7}
+.note>b{display:block;font-size:12px;margin-bottom:2px;letter-spacing:.3px}
+.note.key{background:#EEF6FE;border-color:#BFD8F0;color:#1B365D}
+.note.key>b{color:var(--accent)}
+.note.warn{background:#FFF4F4;border-color:#F3C1C1;color:#8A2B2B}
+.note.warn>b{color:#B02A2A}
+.note.pin{background:var(--amber);border-color:var(--amber-b);color:#6B4E10}
+.note.pin>b{color:var(--amber-t)}
+
+/* ============ QA ============ */
+.qa{border:1px solid #E4EAF2;border-radius:11px;overflow:hidden;margin:8px 0}
+.qa-q{background:#F3F7FC;padding:9px 12px;font-size:13px;font-weight:800;color:var(--ink);line-height:1.6;border-bottom:1px solid #E4EAF2}
+.qa-a{padding:10px 12px;font-size:13px;line-height:1.78;color:#2C3A4B}
+.qa-a::before{content:"解";display:inline-block;width:17px;height:17px;line-height:17px;text-align:center;border-radius:5px;background:#2F855A;color:#fff;font-size:10px;font-weight:800;margin-right:6px;vertical-align:1px}
+
+/* ============ CHAIN ============ */
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin:8px 0 4px}
+.chain .step{background:#EAF2FB;border:1px solid #CFE0F2;color:var(--ink);font-weight:800;font-size:11.5px;padding:4px 8px;border-radius:7px;white-space:nowrap}
+.chain .arw{color:#A9C0D8;font-weight:800;font-size:11px}
+
+/* ============ BARS ============ */
+.bars{display:grid;gap:7px;margin:9px 0 4px}
+.bar-row{display:grid;grid-template-columns:78px 1fr 82px;gap:8px;align-items:center;font-size:11px}
+.bar-lb{font-weight:800;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{height:9px;background:#EDF2F8;border-radius:6px;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#8CBBE4,#2B6CB0)}
+.bar-v{color:var(--muted);font-size:10.5px;text-align:right;white-space:nowrap}
+
+/* ============ CLOZE ============ */
+.blank{padding:0 2px;border-radius:4px;transition:background .16s,color .16s}
+body.cloze .blank{
+  background:#1B365D;color:transparent;cursor:pointer;
+  -webkit-user-select:none;user-select:none;
+  box-shadow:inset 0 -1px 0 rgba(255,255,255,.14);
+  border-radius:4px;
+}
+body.cloze .blank:active{background:#3E8ED0}
+body.cloze .blank.revealed{background:#FFF3C4;color:#7A4E00;font-weight:800;box-shadow:none;-webkit-user-select:text;user-select:text}
+body.cloze .tips .blank{background:#E8C97A}
+body.cloze .tips .blank.revealed{background:#FFF3C4}
+
+/* ============ GUIDE ============ */
+.guide{background:linear-gradient(150deg,#1B365D,#2B6CB0);color:#fff;border-radius:var(--r);padding:15px;margin-bottom:15px;box-shadow:0 8px 22px rgba(27,54,93,.2)}
+.guide h3{margin:0 0 3px;font-size:15px;font-weight:800;letter-spacing:.4px}
+.guide p.sub{margin:0 0 11px;font-size:11.5px;opacity:.82;line-height:1.6}
+.g-step{display:flex;gap:9px;margin:8px 0;font-size:12.5px;line-height:1.65}
+.g-num{flex:0 0 21px;height:21px;border-radius:7px;background:rgba(255,255,255,.2);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.g-step b{color:#FFE9A8}
+
+/* ============ FLASHCARD ============ */
+.fc-wrap{max-width:540px;margin:0 auto}
+.fc-meta{display:flex;justify-content:space-between;align-items:center;padding:0 3px 8px;font-size:12px;color:var(--muted);font-weight:700}
+.fc-state{font-size:11px;font-weight:800;padding:3px 9px;border-radius:999px;background:#EDF2F8;color:#5A6B7F}
+.fc-state.known{background:var(--green-bg);color:var(--green)}
+.fc-state.weak{background:#FFF1F1;color:#B02A2A}
+.fc{perspective:1400px;height:374px;margin:0 0 12px}
+.fc-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,.15,.2,1);cursor:pointer}
+.fc-inner.flipped{transform:rotateY(180deg)}
+.fc-face{
+  position:absolute;inset:0;border-radius:20px;padding:20px;overflow-y:auto;
+  -webkit-backface-visibility:hidden;backface-visibility:hidden;
+  -webkit-overflow-scrolling:touch;
+}
+.fc-front{
+  background:linear-gradient(155deg,#16294A,#1B365D 40%,#2B6CB0);color:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:0 16px 34px rgba(27,54,93,.28);text-align:center;
+}
+.fc-front::before{
+  content:"";position:absolute;inset:0;border-radius:20px;opacity:.13;
+  background-image:linear-gradient(rgba(255,255,255,.6) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.6) 1px,transparent 1px);
+  background-size:30px 30px;
+}
+.fc-chip{position:relative;z-index:1;font-size:10.5px;font-weight:800;letter-spacing:1px;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.26)}
+.fc-code{position:relative;z-index:1;font-size:40px;font-weight:800;letter-spacing:1.5px;margin:16px 0 6px;line-height:1.15;word-break:break-all}
+.fc-code.sm{font-size:30px}
+.fc-hint{position:relative;z-index:1;font-size:11px;opacity:.7;margin-top:14px;letter-spacing:.5px}
+.fc-back{background:#fff;border:1px solid #DCE6F2;transform:rotateY(180deg);box-shadow:0 12px 28px rgba(27,54,93,.12)}
+.fc-bh{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--accent);margin-bottom:8px}
+.fc-code-b{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:.6px;margin-bottom:10px;padding-bottom:9px;border-bottom:1px dashed #DCE6F2;word-break:break-all}
+.fc-row{display:flex;gap:8px;margin:7px 0;font-size:12px;line-height:1.62}
+.fc-k{flex:0 0 52px;font-weight:800;color:var(--muted);font-size:11px;padding-top:1px}
+.fc-v{flex:1;color:#2C3A4B}
+.fc-v b{color:var(--ink)}
+.fc-point{margin-top:10px;padding:8px 10px;background:var(--amber);border-radius:9px;border-left:3px solid #D99E00;font-size:11.5px;line-height:1.62;color:#6B4E10}
+.fc-point b{color:var(--amber-t)}
+.fc-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px}
+.fc-actions2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.fc-actions2.one{grid-template-columns:1fr}
+.btn{
+  min-height:46px;border-radius:12px;font-size:13px;font-weight:800;
+  background:#fff;border:1px solid var(--line);color:var(--ink);
+  display:flex;align-items:center;justify-content:center;gap:4px;
+  transition:transform .12s,background .15s,box-shadow .15s;
+}
+.btn:active{transform:scale(.975)}
+.btn.pri{background:var(--ink);border-color:var(--ink);color:#fff;box-shadow:0 5px 14px rgba(27,54,93,.22)}
+.btn.blue{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 5px 14px rgba(43,108,176,.22)}
+.btn.ok{background:var(--green-bg);border-color:#B7E4C7;color:#276749}
+.btn.no{background:#FFF1F1;border-color:#F5C2C2;color:#9B2C2C}
+.btn.ghost{background:#F5F8FC;color:#43566B}
+.btn:disabled{opacity:.42;box-shadow:none}
+.fc-dots{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:4px}
+.dot{width:34px;height:34px;border-radius:8px;font-size:12px;font-weight:800;background:#fff;border:1px solid var(--line);color:#7C8CA0;display:flex;align-items:center;justify-content:center;padding:0}
+.dot.cur{background:var(--ink);border-color:var(--ink);color:#fff}
+.dot.known{background:#D7F0E1;border-color:#A9DCBF;color:#276749}
+.dot.weak{background:#FDE0E0;border-color:#F3BDBD;color:#9B2C2C}
+
+/* ============ QUIZ ============ */
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px}
+.mode{
+  min-height:44px;border-radius:11px;background:#fff;border:1px solid var(--line);
+  font-size:12.5px;font-weight:800;color:#5A6B7F;display:flex;align-items:center;justify-content:center;
+}
+.mode.active{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 4px 11px rgba(43,108,176,.24)}
+.pg-txt{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--muted);font-weight:700;padding:0 2px 5px}
+.pg-txt b{color:var(--ink)}
+.pg-rate{color:var(--green)}
+.pg-track{height:5px;background:#E4EBF3;border-radius:4px;overflow:hidden;margin-bottom:12px}
+.pg-fill{height:100%;background:linear-gradient(90deg,#3E8ED0,#1B365D);border-radius:4px;transition:width .3s}
+.qcard{background:#fff;border:1px solid #E4EAF2;border-radius:var(--r);padding:14px;box-shadow:0 2px 10px rgba(27,54,93,.05);animation:pop .22s ease}
+.q-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.q-tag{font-size:10px;font-weight:800;letter-spacing:.8px;padding:3px 8px;border-radius:6px;background:#EAF2FB;color:var(--accent)}
+.q-tag.dual{background:#FFF3D6;color:#8A5A00}
+.q-no{font-size:10.5px;font-weight:800;color:#A9B8C8;letter-spacing:.6px}
+.q-stem{font-size:14.5px;font-weight:700;line-height:1.7;color:#1F2D3D;margin-bottom:11px}
+.q-stem .u{color:var(--accent);font-weight:800;padding:0 1px}
+.dual-hint{font-size:11px;color:#8A5A00;background:#FFF8E8;border:1px dashed #EBD39A;border-radius:8px;padding:5px 9px;margin-bottom:10px;line-height:1.5}
+.opts{display:grid;gap:8px}
+.opt{
+  display:flex;align-items:flex-start;gap:9px;width:100%;min-height:52px;text-align:left;
+  padding:11px 12px;border-radius:11px;border:1.5px solid #DCE6F2;background:#fff;
+  font-size:13.5px;line-height:1.55;color:#243447;position:relative;
+  transition:border-color .15s,background .15s,transform .12s;
+}
+.opt:active{transform:scale(.99)}
+.opt .key{
+  flex:0 0 24px;height:24px;border-radius:7px;background:#EDF3FA;color:var(--accent);
+  font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;margin-top:1px;
+}
+.opt .ot{flex:1}
+.opt.sel{border-color:var(--accent);background:#F3F9FF}
+.opt.sel .key{background:var(--accent);color:#fff}
+.opt.correct{border-color:#48A97A;background:var(--green-bg)}
+.opt.correct .key{background:var(--green);color:#fff}
+.opt.wrong{border-color:#E06A6A;background:var(--red-bg)}
+.opt.wrong .key{background:var(--red);color:#fff}
+.opt.dim{opacity:.5}
+.opt .ord{
+  position:absolute;right:8px;top:8px;width:17px;height:17px;border-radius:50%;
+  background:var(--accent);color:#fff;font-size:10px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+}
+.res{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:800;padding:9px 11px;border-radius:10px;margin:11px 0 0;animation:pop .2s}
+.res.ok{background:var(--green-bg);color:#276749;border:1px solid #B7E4C7}
+.res.no{background:var(--red-bg);color:#9B2C2C;border:1px solid #F3BDBD}
+.res .my{font-weight:700;font-size:11.5px;opacity:.85}
+.exp{margin-top:10px;border:1px solid #CFE0F2;background:#F4F9FF;border-radius:11px;padding:9px 12px;animation:pop .24s}
+.exp-h{font-size:10px;font-weight:800;letter-spacing:1px;color:var(--accent);margin-bottom:2px}
+.exp p{margin:0;font-size:12.5px;line-height:1.75;color:#2C3A4B}
+.exp b{color:var(--ink)}
+.q-nav{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.q-nav.one{grid-template-columns:1fr}
+.kbd-tip{display:none;margin-top:9px;font-size:10.5px;color:#9AAABD;text-align:center;letter-spacing:.3px}
+.qcard.done{text-align:center;padding:26px 16px}
+.done-ico{font-size:40px;line-height:1}
+.qcard.done h3{margin:8px 0 4px;font-size:16px;color:var(--ink)}
+.qcard.done p{margin:0 0 16px;font-size:13px;color:var(--muted);line-height:1.7}
+.qcard.done p b{color:var(--accent);font-size:15px}
+
+/* ============ OVERVIEW ============ */
+.ov-bar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:7px 11px;min-height:50px}
+.ov-info{font-size:11.5px;color:var(--muted);font-weight:700}
+.ov-info b{color:var(--ink);font-size:13px}
+.ov-toggle{min-height:36px;padding:0 12px;border-radius:9px;background:#EAF2FB;color:var(--accent);font-size:11.5px;font-weight:800;white-space:nowrap}
+.ov-sec{font-size:12px;font-weight:800;color:var(--ink);margin:14px 2px 8px;display:flex;align-items:center;gap:6px}
+.ov-sec::before{content:"";width:3px;height:13px;border-radius:2px;background:var(--accent)}
+.ov-sec span{font-size:10.5px;font-weight:700;color:var(--muted)}
+.ov-item{background:#fff;border:1px solid #E8EEF6;border-radius:11px;padding:10px 11px;margin-bottom:8px}
+.ov-line{display:flex;gap:8px;align-items:flex-start}
+.ov-no{flex:0 0 22px;font-size:10px;font-weight:800;color:#9AAABD;padding-top:2px}
+.ov-q{flex:1;font-size:12.5px;line-height:1.62;color:#22303F;font-weight:600}
+.ov-q .u{color:var(--accent);font-weight:800}
+.ans{flex:0 0 auto;min-width:30px;height:21px;padding:0 7px;border-radius:6px;background:#EAF2FB;color:var(--accent);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;white-space:nowrap}
+.ov-opts{margin:7px 0 0 30px;font-size:11.5px;line-height:1.75;color:#5A6B7F}
+.ov-opts i{font-style:normal;color:#9AAABD;margin-right:2px}
+.ov-opts b{color:var(--ink);background:#FFF3C4;padding:0 2px;border-radius:3px}
+.ov-exp{margin:7px 0 0 30px;font-size:11.5px;line-height:1.68;color:#5A6B7F;background:#F7FAFD;border-left:2px solid #CFE0F2;padding:5px 8px;border-radius:0 6px 6px 0;cursor:pointer;position:relative}
+.ov-item.hide-exp .ov-exp{color:transparent;background:#E3EAF3;border-left-color:#CBD5E1;text-shadow:none;-webkit-user-select:none;user-select:none;border-radius:0 6px 6px 0;min-height:30px}
+.ov-item.hide-exp .ov-exp::after{content:"点击查看解析";position:absolute;right:7px;top:50%;transform:translateY(-50%);font-size:9.5px;font-weight:800;color:#94A7BC;background:#E3EAF3;padding-left:6px;letter-spacing:.3px}
+.ov-item.hide-exp .ov-exp.revealed::after{display:none}
+.ov-item.hide-exp .ov-exp.revealed{color:#5A6B7F;background:#F7FAFD;border-left-color:#CFE0F2;-webkit-user-select:text;user-select:text}
+.ov-flag{display:inline-block;font-size:9.5px;font-weight:800;color:#B02A2A;background:#FFF1F1;border-radius:4px;padding:1px 5px;margin-left:5px;vertical-align:1px}
+.empty{text-align:center;padding:34px 18px;background:#fff;border:1px dashed #D8E2EE;border-radius:var(--r);color:var(--muted);font-size:13px;line-height:1.8}
+.empty .big{font-size:34px;display:block;margin-bottom:6px}
+
+/* ============ TOAST ============ */
+.toast{
+  position:fixed;left:50%;bottom:calc(26px + env(safe-area-inset-bottom));
+  transform:translate(-50%,16px);max-width:86vw;z-index:99;
+  background:rgba(18,32,50,.95);color:#fff;font-size:13px;font-weight:700;
+  padding:11px 17px;border-radius:13px;line-height:1.5;text-align:center;
+  opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;
+  box-shadow:0 12px 30px rgba(0,0,0,.28);
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ============ FOOTER ============ */
+.ft{max-width:880px;margin:0 auto;padding:6px 16px 30px;text-align:center;font-size:10.5px;color:#9AAABD;line-height:1.8}
+.ft b{color:#7C8CA0}
+
+.swipe-tip{font-size:10px;color:#9AAABD;text-align:center;margin:3px 0 0;letter-spacing:.5px}
+
+/* 宽表在小屏折叠为「一牌号一卡」的堆叠布局 */
+@media (max-width:640px){
+  .tw.stack{overflow:visible;border:0;background:transparent;border-radius:0}
+  .tw.stack table{min-width:0!important;width:100%;font-size:12.5px}
+  .tw.stack thead{display:none}
+  .tw.stack tbody{display:block}
+  .tw.stack tbody tr{display:block;background:#fff;border:1px solid #E4EAF2;border-radius:11px;margin-bottom:9px;padding:2px 0 6px;box-shadow:0 1px 4px rgba(27,54,93,.04)}
+  .tw.stack tbody tr:nth-child(even){background:#fff}
+  .tw.stack td{display:block;border:0;padding:4px 11px;font-size:12.5px;line-height:1.62}
+  .tw.stack td:first-child{background:#EAF2FB;border-radius:8px;margin:5px 6px 4px;padding:5px 10px;font-size:13px;font-weight:800;color:var(--ink)}
+  .tw.stack td:not(:first-child)::before{content:attr(data-label);display:block;font-size:9.5px;font-weight:800;color:#7C93AB;letter-spacing:.5px;margin-bottom:1px}
+}
+@media (min-width:720px){
+  body{font-size:15.5px}
+  .hd h1{font-size:24px}
+  .hd h1 span{font-size:14px}
+  main{padding:20px 20px 50px}
+  .chapter{padding-bottom:2px}
+  .q-stem{font-size:15.5px}
+  .tw table{font-size:13px}
+  .tw th,.tw td{padding:9px 11px}
+  .kbd-tip{display:block}
+  .modes{grid-template-columns:repeat(4,1fr)}
+  .fc{height:386px}
+  .fc-code{font-size:46px}
+  .btn:hover{background:#F7FAFD}
+  .btn.pri:hover{background:#24476F}
+  .chip:hover{border-color:#B9D2EC;color:var(--accent)}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <div class="hd-in">
+    <div class="hd-top">
+      <div>
+        <div class="hd-kicker">2026 秋 · 工程材料及热处理 C</div>
+        <h1>高效记忆刷题台<span>考点挖空 · 牌号翻转 · 48题真题自测</span></h1>
+      </div>
+      <button class="share-btn" id="shareBtn" aria-label="分享给舍友">📤 分享给舍友</button>
+    </div>
+    <div class="hd-stats">
+      <div class="stat"><b id="stDone">0</b><span>已刷 / 48</span></div>
+      <div class="stat"><b id="stWrong">0</b><span>错题本</span></div>
+      <div class="stat"><b id="stCards">0</b><span>牢记 / 20</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="tabs-in">
+    <button class="tab active" data-tab="read"><i>📖</i>考点背诵</button>
+    <button class="tab" data-tab="cards"><i>🃏</i>牌号解码</button>
+    <button class="tab" data-tab="quiz"><i>✍️</i>真题刷题</button>
+  </div>
+</nav>
+
+<main>
+  <section class="panel active" id="panel-read">
+    <div class="read-bar">
+      <div class="chips" id="chFilter"></div>
+      <div class="cloze-row">
+        <label class="switch">
+          <input type="checkbox" id="clozeToggle">
+          <span class="sl"></span>
+        </label>
+        <div class="cloze-txt">
+          <b id="clozeLabel">背诵遮挡已开启</b>
+          <span id="clozeHint">点击深色遮罩可单块翻开自测</span>
+        </div>
+        <div class="cloze-cnt" id="clozeCnt">0 / 0</div>
+      </div>
+    </div>
+    <div id="chapterList"></div>
+  </section>
+
+  <section class="panel" id="panel-cards">
+    <div class="fc-wrap">
+      <div class="fc-meta">
+        <span id="fcCount">1 / 20</span>
+        <span class="fc-state" id="fcState">未标记</span>
+      </div>
+      <div class="fc" id="fc">
+        <div class="fc-inner" id="fcInner">
+          <div class="fc-face fc-front" id="fcFront"></div>
+          <div class="fc-face fc-back" id="fcBack"></div>
+        </div>
+      </div>
+      <div class="fc-actions">
+        <button class="btn" id="fcPrev">◀ 上一张</button>
+        <button class="btn pri" id="fcFlip">翻转卡片</button>
+        <button class="btn" id="fcNext">下一张 ▶</button>
+      </div>
+      <div class="fc-actions2">
+        <button class="btn ok" id="fcKnown">✅ 已牢记</button>
+        <button class="btn no" id="fcWeak">🔁 没记住</button>
+      </div>
+      <div class="fc-actions2">
+        <button class="btn ghost" id="fcRandom">🎲 随机抽卡</button>
+        <button class="btn ghost" id="fcWeakOnly">🎯 只抽没记住</button>
+      </div>
+      <div class="fc-dots" id="fcDots"></div>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-quiz">
+    <div class="modes" id="modeBar">
+      <button class="mode active" data-mode="seq">顺序刷题</button>
+      <button class="mode" data-mode="rand">随机乱序</button>
+      <button class="mode" data-mode="wrong">只刷错题本</button>
+      <button class="mode" data-mode="overview">题库总览</button>
+    </div>
+    <div id="quizProg"></div>
+    <div id="quizBody"></div>
+  </section>
+</main>
+
+<div class="ft">
+  <b>工程材料及热处理 C · 高效记忆宝典</b><br>
+  数据来源：2026 秋季学期期末冲刺结构化复习讲义（全 8 章 + 48 题真题）<br>
+  本页数据仅存于你的浏览器本地，换设备不同步 · 建议添加到主屏幕使用
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================
+   工程材料及热处理C · 复习刷题台
+   单文件 / 零外部依赖 / 数据与视图分离
+   所有 localStorage 键名统一前缀 eng_mat_2026_
+   ========================================================= */
+
+const STUDY_DATA = {
+  meta: {
+    course: '工程材料及热处理 C',
+    title: '高效记忆宝典',
+    term: '2026 秋',
+    storagePrefix: 'eng_mat_2026_'
+  },
+
+  chapters: [
+    {
+      id: 'ch1', no: '01', name: '第1章', title: '材料的性能',
+      focus: '力学性能指标定义、三大硬度（HBS / HRC / HV）适用场合与换算、冷脆与疲劳断裂',
+      tips: [
+        { h: '适用口诀', t: '「布软毛坯洛淬火，维氏专测薄硬化」——未加工毛坯找 <b>HBS</b>，热处理零件找 <b>HRC</b>，镀层 / 薄片找 <b>HV</b>。' },
+        { h: '换算公式（背下来）', t: '硬度在 [[200 ~ 600 HBS]] 范围内时：[[HRC ≈ 1/10 HBS]]；硬度 < [[450 HBS]] 时：[[HBS ≈ HV]]。典型：200 HBS ≈ 200 HV ≈ 20 HRC。' },
+        { h: '避坑指南', t: '维氏硬度符号是 <b>HV</b>（原稿笔误写作 HW）；冲击吸收功写作 <b>Ak</b>（原稿写作 A）。HBS 中的 S 指淬火钢球压头，不能与 HRC 混写。' }
+      ],
+      blocks: [
+        { t: 'p', h: '1.1 核心力学性能概念速记', items: [
+          '<b>强度</b>：金属材料在[[静载荷]]作用下，[[抵抗变形和破坏]]的能力称为强度。',
+          '<b>塑性</b>：材料在外力作用下产生[[永久变形而不断裂]]的能力。两大指标：[[断后伸长率 δ]] 与 [[断面收缩率 ψ]]。',
+          '<b>硬度</b>：材料在[[表面局部体积内]]抵抗更硬物体压入其表面的能力。',
+          '<b>冷脆现象</b>：冲击吸收功 [[Ak]] 与温度有关；当温度降低到某一程度（[[韧脆转变温度]]）时，冲击吸收功[[明显下降]]的现象，称为冷脆性。',
+          '<b>疲劳断裂</b>：在[[低于屈服强度]]的[[交变应力]]载荷作用下，经过较长时间工作或多次应力循环后所发生的[[突然断裂]]现象。'
+        ]},
+        { t: 'table', h: '1.2 常用三种硬度指标对比（必考对比表）',
+          head: ['硬度指标', '符号与表示示例', '适用场合（测什么零件）', '不适用场合 / 备注'],
+          rows: [
+            ['布氏硬度', '[[HBS]]　例：250 HBS', '较软的[[铸铁、有色金属]]材料；不淬火的毛坯；未机械加工和热处理的零件', '不适合测太硬的淬火件（压头易变形）'],
+            ['洛氏硬度', '[[HRC]]　例：45 HRC', '[[机械加工后]]和[[热处理（淬火、调质）后]]的零件', '不适用极薄工件和化学热处理后的薄表面层'],
+            ['维氏硬度', '[[HV]]　例：620 HV', '[[表面硬化层]]、金属镀层、薄片金属，或宝石古董类', '测量效率相对较低，常用于精密薄层检测']
+          ]
+        },
+        { t: 'note', kind: 'warn', h: '易错三连', text: '① 维氏符号 [[HV]]，不是 HW；② 冲击吸收功 [[Ak]]，不是 A；③ HRC 是洛氏 C 标尺，HBS 是布氏（钢球压头），两者绝不可互换书写。' },
+        { t: 'note', kind: 'key', h: '结论速记', text: '硬度与耐磨性正相关（HBS 越高，耐磨性越好）；但硬度升高，塑性与韧性下降——选材要综合平衡。' }
+      ]
+    },
+    {
+      id: 'ch2', no: '02', name: '第2章', title: '金属的结构与结晶',
+      focus: '三种典型金属晶格、晶体缺陷分类、合金相结构与四大转变、过冷度与细化晶粒',
+      tips: [
+        { h: '晶胞原子数口诀', t: '「[[体2面4六方6]]，面心奥氏塑性牛」——塑性排序：[[FCC > BCC > HCP]]。' },
+        { h: '细化晶粒四招', t: '「[[提冷速、增过冷、做变质、加振动]]」——晶粒越细，强度、塑性、韧性全部升高。' },
+        { h: '避坑指南', t: '细晶强化是<b>唯一</b>能同时提高强度和塑韧性的方法；面心立方（FCC）塑性最好，密排六方（HCP）最差，别记反。' }
+      ],
+      blocks: [
+        { t: 'p', h: '2.1 三个必背概念', items: [
+          '<b>晶格（空间点阵）</b>：表示晶体内部质点排列规律的几何图形。',
+          '<b>结晶</b>：物质由液态转变成固态的过程中，原子由[[近程有序]]转变为[[长程有序]]的过程。',
+          '<b>固溶强化</b>：合金元素固溶于基体金属中造成一定程度的[[晶格畸变]]，从而使合金强度提高的现象。'
+        ]},
+        { t: 'table', h: '2.2 三种典型金属晶格对比',
+          head: ['晶体结构', '英文缩写', '每个晶胞含原子数', '典型代表组织 / 金属', '塑性变形能力排序'],
+          rows: [
+            ['体心立方晶格', '[[BCC]]', '[[2 个]]', '铁素体 α-Fe、δ-Fe、Cr、W', '第 2 名（中等）'],
+            ['面心立方晶格', '[[FCC]]', '[[4 个]]', '奥氏体 γ-Fe、Al、Cu、Ni', '第 1 名（塑性最好）'],
+            ['密排六方晶格', '[[HCP]]', '[[6 个]]', 'Mg、Zn、Be', '第 3 名（塑性最差）']
+          ]
+        },
+        { t: 'table', h: '2.3 晶体缺陷、合金相结构与四大基本转变',
+          head: ['分类维度', '具体类型与组成', '核心特征与对性能的影响'],
+          rows: [
+            ['实际晶体缺陷（按几何形态）', '① 点缺陷：空位、间隙原子、置换原子\n② 线缺陷：刃型位错、螺型位错\n③ 面缺陷：晶界、亚晶界', '晶体缺陷引起[[晶格畸变]]，阻碍位错运动，从而提高金属强度；晶界越多（晶粒越细），强韧性越高'],
+            ['合金与相结构', '<b>合金</b>：两种或以上金属与金属（或非金属）组合而成并具金属特性的物质。\n① 固溶体：间隙固溶体、置换固溶体\n② 金属化合物：如[[渗碳体 Fe₃C]]', '金属化合物特点：[[熔点高、硬度高、脆性大]]；能提高强度、硬度和耐磨性，[[降低塑性和韧性]]'],
+            ['四大基本转变', '① 匀晶转变：液相 → 单相固溶体（L → α）\n② 共晶转变：L → α + β（恒温）\n③ 共析转变：γ → α + β（恒温）\n④ 同素异构转变：固态下随温度改变由一种晶体结构转变为另一种', '共晶与共析转变进行时，合金体系温度均[[保持恒定不变]]（结晶平台）']
+          ]
+        },
+        { t: 'qa', q: '简答 1：何谓过冷现象和过冷度？过冷度与冷却速度有何关系？',
+          a: '（1）过冷现象：实际结晶温度[[低于]]理论结晶温度的现象。\n（2）过冷度：理论结晶温度与实际结晶温度的差值，即 [[ΔT = T₀ − Tₙ]]。\n（3）与冷速关系：冷却速度越快，实际结晶温度 Tn 越低，过冷度 ΔT [[越大]]；冷却速度越慢，越接近理论结晶温度 T₀（过冷度越小）。合金的结晶通常在凝固点以下一温度范围内进行。' },
+        { t: 'qa', q: '简答 2：液态金属的结晶过程包括哪两步？形核方式有哪些？',
+          a: '结晶过程包括：[[晶核的形成]] 和 [[晶核的长大]]。形核方式分为：[[自发形核]] 和 [[非自发形核]]。' },
+        { t: 'qa', q: '简答 3：晶粒大小对性能有何影响？影响因素及细化晶粒的方法是什么？',
+          a: '（1）对性能影响：晶粒越小（越细），强度、塑性和韧性[[越高]]（细晶强化是唯一能同时提高强度和塑韧性的方法）。\n（2）影响因素：[[形核率 N]] 与 [[晶核长大速度 G]]（比值 N/G 越大晶粒越细）；过冷度也影响晶粒度。\n（3）细化晶粒 4 法：① [[提高结晶冷却速度]]；② [[增加过冷度]]；③ [[变质处理]]；④ [[附加振动]]（超声波、电磁搅拌）。' }
+      ]
+    },
+    {
+      id: 'ch3', no: '03', name: '第3章', title: '铁碳合金相图（核心必考）',
+      focus: '5 大基本组织、特征点碳含量与温度、关键线物理意义、室温组织演变速记与冷却转变',
+      tips: [
+        { h: '五大含碳量（闭眼背）', t: '「[[0.0218]] 铁素溶，[[0.77]] 共析点，[[2.11]] 分钢铁，[[4.3]] 共晶点，[[6.69]] 渗碳体」' },
+        { h: '四大关键线', t: '「GS 析铁素（[[A₃]]），ES 析二渗（[[Acm]]），PSK 共析线（[[A₁]]），ECF 共晶线」——PSK 在 727℃，ECF 在 1148℃。' },
+        { h: '三次渗碳体', t: '「[[一液、二奥、三铁素]]」——Fe₃CⅠ 从液相析出，Fe₃CⅡ 从奥氏体析出，Fe₃CⅢ 从铁素体析出。' },
+        { h: '避坑指南', t: '莱氏体虽硬而脆，但它是[[机械混合物]]，<b>不是金属化合物</b>（判断题 21）；A₃ 线随含碳量增加而<b>下降</b>，不是上升（判断题 23）。' }
+      ],
+      blocks: [
+        { t: 'table', h: '3.1 铁碳合金的 5 大基本组织（相与机械混合物）',
+          head: ['组织名称', '符号', '本质与晶体结构', '含碳量与存在条件', '力学性能特点'],
+          rows: [
+            ['奥氏体', '[[A]]', '碳溶于 [[γ-Fe（面心立方 FCC）]] 中形成的间隙固溶体', '高温相（727℃以上），最大溶碳量 [[2.11%]]（1148℃）；常温下无奥氏体', '强度低、硬度低、塑性极好、变形抗力小（适合锻造）'],
+            ['铁素体', '[[F]]', '碳溶于 [[α-Fe（体心立方 BCC）]] 中形成的间隙固溶体', '室温相，溶碳量极小（727℃最大 [[0.0218%]]，室温 0.0008%）', '塑性和韧性好，强度和硬度较低'],
+            ['渗碳体', '[[Fe₃C]]', '铁与碳形成的具有复杂结构的[[金属间化合物]]', '固定含碳量 [[6.69%]]', '熔点高、硬度极高、脆性极大（几乎无塑性）'],
+            ['珠光体', '[[P]]', '[[铁素体 + 渗碳体（F + Fe₃C）]] 的机械混合物（多相组织）', '共析成分含碳量 [[0.77%]]（727℃共析转变产物）', '强度、硬度、塑韧性配合较好的综合力学性能'],
+            ['莱氏体', '[[Ld / Ld′]]', '高温莱氏体 Ld：A + Fe₃C 共晶体；低温莱氏体 Ld′：[[P + Fe₃C]] 机械混合物', '共晶成分含碳量 [[4.3%]]（1148℃共晶转变产物）', '性能硬而脆（因以连续渗碳体为基体，但它是机械混合物而非化合物）']
+          ]
+        },
+        { t: 'table', h: '3.2 关键点、特征线与纯铁同素异构转变',
+          head: ['考点类别', '代号 / 线条', '精确数值 / 物理意义（考试填空必背）'],
+          rows: [
+            ['特征点含碳量', 'B / P / S / E / C / F', 'B 点：[[0.53%]]（包晶反应液相点）；P 点：[[0.0218%]]（727℃碳在 α-Fe 中的最大溶解度）；S 点：[[0.77%]]（共析点）；E 点：[[2.11%]]（钢与白口铸铁分界点）；C 点：[[4.3%]]（共晶点）；F 点（1148℃）与 K 点（727℃）：均为 [[6.69%]]（纯渗碳体）'],
+            ['特征线物理意义', 'ES / GS / PQ / BC', 'ES 线（[[Acm]]）：碳在奥氏体中的溶解度曲线（析出[[二次渗碳体 Fe₃CⅡ]] 的开始线）；GS 线（[[A₃]]）：冷却过程中奥氏体中析出铁素体的开始线（随含碳量增加而[[下降]]）；PQ 线：碳在铁素体中的溶解度曲线（析出[[三次渗碳体 Fe₃CⅢ]] 的开始线）；BC 线（ACD）为液相线；PSK 线（[[A₁]]）为共析线 [[727℃]]；ECF 线为共晶线 [[1148℃]]'],
+            ['合金 7 分类与组织链', '7 类 / 8 链', '平衡状态 7 大类：工业纯铁、亚共析钢、共析钢、过共析钢、亚共晶白口铸铁、共晶白口铸铁、过共晶白口铸铁。固态两种相结构：固溶体 + 金属间化合物（渗碳体）；室温三种组织类型：固溶体（铁素体）、金属间化合物（渗碳体）、机械混合物'],
+            ['纯铁同素异构转变', 'δ-Fe ⇄ γ-Fe ⇄ α-Fe', '[[δ-Fe（bcc） ⇄ 1394℃ ⇄ γ-Fe（fcc） ⇄ 912℃ ⇄ α-Fe（bcc）]]']
+          ]
+        },
+        { t: 'chain', h: '3.3 随含碳量增大的 8 种室温组织演变链',
+          steps: ['F', 'F+P', 'P', 'P+Fe₃CⅡ', 'P+Fe₃CⅡ+Ld′', 'Ld′', 'Ld′+Fe₃CⅠ', 'Fe₃C'],
+          note: '记忆提示：从「纯铁素体」一路走到「纯渗碳体」，中间依次出现珠光体、二次渗碳体、低温莱氏体、一次渗碳体。'
+        },
+        { t: 'table', h: '3.4 三条典型合金冷却纵线的组织转变（极缓慢冷却）',
+          head: ['纵线编号', '合金名称（含碳范围）', '从高温液态向低温冷却的完整组织转变过程'],
+          rows: [
+            ['2 号线', '亚共析钢（[[0.0218% ~ 0.77%]]）', 'L ↔ L + δ ↔ A ↔ A + F ↔ [[P + F]]'],
+            ['3 号线', '共析钢（[[0.77%]]）', 'L ↔ L + A ↔ A ↔ [[P]]'],
+            ['4 号线', '过共析钢（[[0.77% ~ 2.11%]]）', 'L ↔ L + A ↔ A ↔ A + Fe₃CⅡ ↔ [[P + Fe₃CⅡ]]']
+          ],
+          note: '以上均为平衡状态（极缓慢冷却）下的转变过程；实际冷却速度加快会得到 S、T、B、M 等非平衡组织。'
+        },
+        { t: 'qa', q: '简答 1：常说「打铁要趁热」，此处的「铁」指「钢」还是「铸铁」？用金属学原理解释。',
+          a: '（1）此处的「铁」是指[[钢]]（铸铁脆性大，不可锻造）。\n（2）原理：铁碳合金加热到高温时，内部组织转变为[[单相奥氏体 A（面心立方 FCC）]]，其塑性好、硬度低、变形抗力小，在外力敲打时晶粒容易滑动变形而不易开裂，方便锻打成型——这就是「趁热打铁」的科学原理。' },
+        { t: 'qa', q: '简答 2：在碳钢中，随含碳量增加，硬度、塑性、强度如何变化？比较 Fe₃CⅠ、Fe₃CⅡ、Fe₃CⅢ 的不同。',
+          a: '（1）含碳量影响：随含碳量增加，钢的强度、硬度[[逐渐增加]]，塑性[[逐渐降低]]。\n（2）三种渗碳体来源：① [[Fe₃CⅠ（一次渗碳体）：直接从液相中析出]]；② [[Fe₃CⅡ（二次渗碳体）：温度低于 ES 线（Acm）时从奥氏体中析出]]；③ [[Fe₃CⅢ（三次渗碳体）：温度低于 PQ 线时从铁素体中析出]]。' },
+        { t: 'note', kind: 'key', h: '看图写组织万能模板', text: '先判断含碳量落在哪个区间 → 再看温度落在哪条线之间 → 写出「相 + 组织」。亚共析钢室温永远是 [[F + P]]；共析钢是 [[P]]；过共析钢是 [[P + Fe₃CⅡ]]；亚共晶白口铸铁是 [[P + Fe₃CⅡ + Ld′]]。' }
+      ]
+    },
+    {
+      id: 'ch4', no: '04', name: '第4章', title: '钢的热处理（核心必考）',
+      focus: '「四把火」概念与目的、C 曲线 7 种冷速、等温转变产物、淬透 vs 淬硬、三种回火与调质',
+      tips: [
+        { h: '调质黄金公式', t: '「[[调质处理 = 淬火 + 高温回火 → 回火索氏体（S回）]]」——500 ~ 600℃，综合力学性能最好。' },
+        { h: '回火口诀', t: '「[[低回马氏刀量具，中回托氏做弹簧，高回索氏调质轴]]」——低温 150~250℃，中温 350~500℃，高温 500~600℃。' },
+        { h: '淬透 vs 淬硬', t: '「[[淬透看合金（深度），淬硬看含碳（硬度）]]」——冷速只影响实际淬硬层深度，<b>不改变钢材本身的淬透性</b>。' },
+        { h: '表面两兄弟', t: '「[[表面淬火只改组织，化学热处理连成分一起改]]」——渗碳、渗氮、碳氮共渗属于化学热处理。' }
+      ],
+      blocks: [
+        { t: 'p', h: '4.1 基本概念与奥氏体形成四阶段', items: [
+          '<b>钢的热处理</b>：将固态金属或合金采用适当方法[[加热、保温和冷却]]，以获得所需组织与性能的工艺方法（不改变整体化学成分，表面化学热处理除外）。',
+          '<b>过冷奥氏体（Ar）</b>：温度降到 [[A₁]] 以下后，奥氏体处于不稳定过冷状态，称为过冷奥氏体。',
+          '<b>残余奥氏体（A′）</b>：奥氏体向马氏体转变时，即使冷却至 [[Mf]] 以下，总有一部分奥氏体未能转变而保留下来。',
+          '<b>共析钢加热时奥氏体形成的四个阶段</b>：① [[奥氏体晶核的形成]] → ② [[奥氏体的长大]] → ③ [[残余渗碳体的溶解]] → ④ [[奥氏体成分的均匀化]]。'
+        ]},
+        { t: 'table', h: '4.2 钢的热处理「四把火」对比',
+          head: ['工艺名称', '加热与冷却方式', '主要工艺目的与定位'],
+          rows: [
+            ['退火', '加热到相变温度之上，保温后在加热炉中[[缓慢冷却（炉冷）]]', '<b>预备热处理</b>：[[降低硬度便于切削]]、细化晶粒、消除内应力。常用 5 种：完全退火、球化退火、去应力退火、再结晶退火、扩散退火'],
+            ['正火', '加热到相变温度之上，保温后在[[静止空气中冷却（空冷）]]', '使碳钢获得力学性能较好的[[索氏体 S]]。低碳钢正火可提高硬度防粘刀；高碳钢正火可防止（消除网状）[[二次渗碳体析出]]；普通零件可作最终热处理'],
+            ['淬火', '加热到相变温度之上（Ac₃ 或 Ac₁ 以上），保温后[[快速冷却]]', '<b>最终热处理核心工序</b>：获得[[马氏体 M]] 或 [[下贝氏体 B下]]，大幅提高硬度、强度和耐磨性（脆性大，必须配合回火）。常用介质：油、水、盐水、碱水。5 种方法：单液、双液、马氏体分级、贝氏体等温、局部淬火'],
+            ['回火', '淬火后重新加热到 [[Ac₁ 以下]]某一温度，保温后冷却至室温', '<b>淬火必配工序</b>：降低或消除淬火内应力与脆性（防变形开裂）、稳定组织与尺寸、调整并获得所需力学性能']
+          ]
+        },
+        { t: 'note', kind: 'pin', h: '亚共析钢正火与完全退火的选择原则', text: '低碳钢退火后硬度过低，切削易粘刀、表面粗糙，正火可提高硬度改善切削性；中碳钢正火硬度略高于退火，且退火周期长、成本高。因此，含碳量小于 [[0.5%]] 的碳钢一般优先选择[[正火代替完全退火]]。' },
+        { t: 'table', h: '4.3 共析钢 C 曲线 7 种冷却方式对照',
+          head: ['编号 · 冷却方式', '工艺名称', '转变产物'],
+          rows: [
+            ['①　V₁ 炉冷', '退火', '[[P]]'],
+            ['②　V₂ 空冷', '正火', '[[S]]'],
+            ['③　V₃ 油冷', '单介质淬火（油冷）', '[[T + M + A′]]'],
+            ['④　V₄ 分级', '马氏体分级淬火', '[[M + A′]]'],
+            ['⑤　V₅ 等温', '贝氏体等温淬火', '[[B下]]'],
+            ['⑥　V₆ 双介质', '双介质淬火', '[[M + A′]]'],
+            ['⑦　V₇ 水冷', '单介质淬火（水冷）', '[[M + A′]]']
+          ],
+          note: '连续冷却速度由慢到快：炉冷（V₁）< 空冷（V₂）< 油冷（V₃）< 双介质（V₆）< 水冷（V₇）；V₄ 分级、V₅ 等温属于「先快冷后保温」的阶段冷却工艺，不参与连续冷速排序。'
+        },
+        { t: 'bars', h: '工艺冷却顺序示意（横条仅作示意，不代表实际定量冷速比例）',
+          rows: [
+            { k: 'V₁ 炉冷', w: 14, v: 'P · 退火' },
+            { k: 'V₂ 空冷', w: 26, v: 'S · 正火' },
+            { k: 'V₃ 油冷', w: 48, v: 'T + M + A′' },
+            { k: 'V₄ 分级', w: 60, v: 'M + A′' },
+            { k: 'V₅ 等温', w: 72, v: 'B下' },
+            { k: 'V₆ 双介质', w: 88, v: 'M + A′' },
+            { k: 'V₇ 水冷', w: 100, v: 'M + A′' }
+          ],
+          note: '关键结论：冷速一旦大于 Vk，就能获得马氏体；Vk 与 Ps 线鼻尖相切。V₄ 分级淬火与 V₅ 等温淬火属于「先快冷（冷速 > Vk）后保温」的阶段冷却工艺，并非介于油冷与双介质之间的连续冷速。'
+        },
+        { t: 'note', kind: 'key', h: 'C 曲线三条关键特征线（填空必背）', text: '① <b>Vk（马氏体临界冷却速度）</b>：与 Ps 线鼻尖相切，要获得马氏体，淬火冷速必须 [[大于 Vk]]；② <b>Vk1</b>：获得[[全部珠光体]]的最大冷却速度；③ <b>KK1 线（转变中止线）</b>：冷却曲线碰到此线时，过冷奥氏体中止向珠光体型组织转变，剩余奥氏体过冷到 [[Ms]] 以下转变为马氏体。' },
+        { t: 'table', h: '4.4 等温转变产物与性能对比（必考）',
+          head: ['转变性质', '转变产物（符号）', '转变温度范围', '组织形态与力学性能特点'],
+          rows: [
+            ['扩散型转变（片间距递减，硬度递增）', '珠光体 [[P]]\n索氏体 [[S]]\n托氏体（屈氏体）[[T]]', 'A₁ ~ 650℃\n650 ~ 600℃\n600 ~ 550℃', '片间距：P（>0.3μm，HBS 最低）> S（0.1~0.3μm）> T（<0.1μm，HBS 最高）；硬度：P（17~23 HRC）< S（23~32 HRC）< T（33~40 HRC）。三者本质均为 [[F + Fe₃C 机械混合物]]，仅片层粗细不同'],
+            ['半扩散型转变', '上贝氏体 [[B上]]\n下贝氏体 [[B下]]', '550 ~ 350℃\n350℃ ~ Ms（230℃）', 'B上（羽毛状）：硬度约 45 HRC，脆性大，没有实用价值；B下（针状）：硬度约 50 HRC，[[韧性高，综合力学性能极好]]'],
+            ['无扩散型转变（不需保温）', '马氏体 [[M]]', 'Ms ~ Mf（230 ~ −50℃）', '低碳（Wc<0.2%）为[[板条马氏体]]（韧性好）；中高碳为片状/针状马氏体（硬度 60~65 HRC，脆性大）']
+          ]
+        },
+        { t: 'p', h: '4.5 淬透性 vs 淬硬性', items: [
+          '<b>淬透性（看深度）</b>：钢在淬火时获得[[淬硬层深度]]的能力。主要取决于[[合金元素]]（合金钢淬透性远好于碳钢，与冷速无关！）。典型比较：[[20CrMnTi > 65Mn > 45]]。',
+          '<b>淬硬性（看最高硬度）</b>：钢淬火后获得[[最高硬度]]的能力。主要取决于[[马氏体的含碳量]]（含碳量越高，淬火后硬度越大）。典型比较：[[65Mn > 45 > 20CrMnTi]]。',
+          '<b>回火四阶段</b>：① 马氏体的分解 → ② 残余奥氏体的分解 → ③ 碳化物的转变 → ④ 渗碳体的聚集长大与铁素体相的再结晶。'
+        ]},
+        { t: 'table', h: '4.6 三种回火工艺对比（调质处理）',
+          head: ['回火工艺', '加热温度', '回火组织', '硬度 HRC', '性能特点', '典型应用'],
+          rows: [
+            ['低温回火', '[[150 ~ 250℃]]', '[[M回]]（回火马氏体）', '58 ~ 64', '保持高硬度、高耐磨性，降低内应力与脆性', '刀具、模具、量具、滚动轴承、渗碳件、表面淬火件'],
+            ['中温回火', '[[350 ~ 500℃]]', '[[T回]]（回火托氏体）', '35 ~ 50', '极高的弹性极限与屈强比，一定韧性与抗疲劳性', '各种弹簧钢（65Mn、60Si2Mn）、热作模具'],
+            ['高温回火（调质）', '[[500 ~ 600℃]]', '[[S回]]（回火索氏体）', '25 ~ 35', '强度、塑性、韧性俱佳（综合力学性能最好）', '轴类、齿轮、连杆等重要结构件']
+          ]
+        },
+        { t: 'p', h: '4.7 表面热处理两大类（必考区别）', items: [
+          '<b>表面淬火</b>（感应加热、火焰加热、激光加热）：只改变[[表层组织]]，<b>不改变</b>表面化学成分；高频感应[[频率越高，淬硬层越浅]]。',
+          '<b>化学热处理</b>（渗碳、渗氮、碳氮共渗）：既改变表层[[化学成分]]，又改变表层组织与性能。'
+        ]}
+      ]
+    },
+    {
+      id: 'ch5', no: '05', name: '第5章', title: '工业用钢（牌号解码与分类）',
+      focus: '钢中有益与有害杂质元素、钢的三大分类体系、20 个核心材料牌号逐字解码',
+      tips: [
+        { h: '碳含量数字规律', t: '「[[结构钢看万分之]]（两位数字，如 45 = 0.45%）；[[工具钢看千分之]]（一位数字，如 T8 = 0.8%、9SiCr = 0.9%）」' },
+        { h: '合金元素数字规律', t: '「一般钢按百分之几标，[[小于 1.5% 不标数字]]（如 60Si2Mn 含 Si 2%）；唯独轴承钢 [[GCr15 按千分之几标]]（15 = 1.5% Cr）！」' },
+        { h: '杂质元素口诀', t: '「[[硅锰有益，磷硫有害]]」——P 引起[[冷脆]]（韧脆转变温度升高），S 形成低熔点 FeS 共晶体引起[[热脆]]。' },
+        { h: '避坑指南', t: 'T10A 的 A 是「高级优质」不是铝；38CrMoAl 的 Al 是铝（原稿笔误 A1）；40Cr 含碳量是 [[0.40%]] 不是 0.45%。' }
+      ],
+      blocks: [
+        { t: 'p', h: '5.1 钢中常存杂质元素的影响', items: [
+          '<b>有益元素（Si 硅、Mn 锰）</b>：溶于铁素体 F 形成[[置换固溶体]]，产生[[固溶强化]]，提高钢的强度与硬度（Mn 还能脱氧并减弱 S 的有害作用）。',
+          '<b>有害元素（P 磷、S 硫）</b>：P 使钢的韧脆转变温度升高，引起[[冷脆]]；S 形成低熔点 [[FeS 共晶体]]，在热加工时引起[[热脆]]（高温龟裂）。',
+          '<b>不锈钢按组织状态分类（5 类）</b>：[[铁素体]]不锈钢、[[奥氏体]]不锈钢、[[马氏体]]不锈钢、[[双相]]不锈钢、[[沉淀硬化]]不锈钢。'
+        ]},
+        { t: 'table', h: '5.1-2 钢的常用分类体系速览',
+          head: ['分类维度', '具体分类'],
+          rows: [
+            ['质量等级', '普通钢、优质钢、高级优质钢（A）、特级优质钢（E）'],
+            ['含碳量分类', '低碳钢（[[Wc < 0.25%]]）、中碳钢（[[Wc = 0.25% ~ 0.60%]]）、高碳钢（[[Wc > 0.60%]]）'],
+            ['合金含量分类', '低合金钢（[[WMe < 5%]]）、中合金钢（[[WMe = 5% ~ 10%]]）、高合金钢（[[WMe > 10%]]）'],
+            ['脱氧程度', '沸腾钢（F）、半沸腾钢（B）、镇静钢（Z）、特殊镇静钢（TZ）'],
+            ['三大类系统分类', '非合金钢（Q235、45、T8、ZG200-400）、合金钢（Q345、60Si2Mn、W18Cr4V）、特殊性能钢（GCr15、06Cr19Ni10、Y40Mn、Q355NH）']
+          ],
+          note: '记忆主线：先看有没有合金元素（三大类系统分类），再看质量等级与含碳量，最后看脱氧程度——同一块钢可以同时带多个「标签」。'
+        },
+        { t: 'table', h: '5.2 必考钢铁材料牌号逐字解码表（20 个牌号全覆盖）',
+          head: ['材料牌号', '所属细分类别', '含碳量与合金成分精准含义（考题原答案）'],
+          rows: [
+            ['Q235A', '普通碳素结构钢', 'Q 代表[[屈服强度]]，屈服强度 σs = [[235 MPa]]，质量等级为 [[A 级]]'],
+            ['Q345', '低合金高强度结构钢', 'Q345：屈服强度 [[345 MPa]]（> 275 MPa），不标含碳量'],
+            ['Q355NH', '低合金高强度结构钢（耐候钢）', 'Q355NH：耐候钢，屈服点 [[≥ 355 MPa]]；NH 表示[[耐候]]（耐大气腐蚀）'],
+            ['45', '优质碳素结构钢', '两位数字表示平均含碳量的万分之几：[[Wc = 0.45%]]'],
+            ['60', '优质碳素结构钢', '两位数字表示万分之几：[[Wc = 0.60%]]'],
+            ['45Mn', '优质碳素结构钢（较高锰）', 'Wc = 0.45%，含 [[Mn ≈ 1.0%]]（较高锰）'],
+            ['T8', '碳素工具钢（优质）', 'T 代表碳工，数字表示千分之几：T8 为优质碳工（[[Wc = 0.8%]]）'],
+            ['T10A', '碳素工具钢（高级优质）', 'T10A 为高级优质碳工（[[Wc = 1.0%]]，"A" 代表[[高级优质]]）'],
+            ['Y40Mn', '易切削钢', 'Y 代表易切削钢，平均含碳量 [[Wc = 0.40%]]，含 Mn 较多'],
+            ['40Cr', '合金结构钢', 'Wc = [[0.40%]]（原稿笔误写 0.45%，标准为 0.40%），Cr 含量 [[< 1.5%]]'],
+            ['60Si2Mn', '合金结构钢（弹簧钢）', '平均含碳量 Wc = 0.60%，含 Si [[≈ 2%]]，含 Mn [[≈ 1%]]'],
+            ['38CrMoAl', '合金结构钢（氮化钢）', 'Wc = 0.38%，含 Cr、Mo、[[Al]]（原稿笔误写 A1，实为铝 Al），合金元素总量 < 5%，属低合金钢'],
+            ['GCr15', '滚动轴承钢', 'G 代表滚，含 Cr 量 = [[1.5%]]（注意：轴承钢 Cr 按千分之几标！），Wc ≈ [[1.0%]]'],
+            ['9SiCr', '合金工具钢', '一位数字表示千分之几：平均含碳量 [[Wc ≈ 0.9%]]，含 Si < 1.5%，Cr < 1.5%'],
+            ['W18Cr4V', '高速工具钢（刀具钢）', '高速钢含碳量不标出（Wc ≈ 1.0%），含 W [[≈ 18%]]、Cr [[≈ 4%]]、V [[≈ 1%]]（制造数控铣刀首选）'],
+            ['1Cr18Ni9Ti', '奥氏体不锈钢（旧牌号）', 'Wc ≈ [[0.1%]]，含 Cr ≈ 18%、Ni ≈ 9%、Ti < 1.5%'],
+            ['06Cr19Ni10', '奥氏体不锈钢（新牌号）', '新国标两位数字表万分之几：Wc ≈ [[0.06%]]，含 Cr ≈ 19%、Ni ≈ 10%（旧牌号即 0Cr19Ni9；超低碳 03 表 ≤0.03%，01 表 ≤0.01%）'],
+            ['HT150', '灰口铸铁', 'HT 代表灰铁，最低抗拉强度为 [[150 MPa]]，石墨形态为[[片状]]'],
+            ['HT200', '灰口铸铁', 'HT 代表灰铁，最低抗拉强度为 [[200 MPa]]'],
+            ['QT600-3', '球墨铸铁', '"QT" 代表球铁，[[600]] 表示最低抗拉强度不小于 600 MPa，[[3]] 表示断后伸长率不小于 3%']
+          ],
+          note: '本表 20 个牌号与「牌号解码」Tab 的 20 张翻转卡一一对应，可交叉自测。'
+        }
+      ]
+    },
+    {
+      id: 'ch68', no: '06-08', name: '第6~8章', title: '铸铁 · 非铁金属 · 非金属材料',
+      focus: '铸铁中碳的存在形式与石墨形态分类、HT/QT 牌号、三大铜合金区别、高分子材料分类',
+      tips: [
+        { h: '石墨形态口诀', t: '「[[灰片、球球、可团、蠕虫]]」——灰口铸铁片状、球墨铸铁球状、可锻铸铁团絮状、蠕墨铸铁蠕虫状。' },
+        { h: '铜合金口诀', t: '「[[黄锌、白镍、青铜其它]]」——黄铜是 Cu-Zn，白铜是 Cu-Ni，青铜是除 Zn、Ni 以外的其他元素。' },
+        { h: '避坑指南', t: '黄铜是<b>铜锌</b>合金（原稿括号曾误写铜-镍）；白铜才是铜镍合金。碳在钢铁中有两种存在形式：渗碳体（[[6.69%]]）与石墨（[[100%]]）。' }
+      ],
+      blocks: [
+        { t: 'p', h: '6.1 第 6 章 铸铁（含碳量 > 2.11%）', items: [
+          '<b>碳在钢铁中的两种存在形式</b>：① [[渗碳体 Fe₃C]]，含碳量 [[6.69%]]；② [[石墨 G]]，含碳量 [[100%]]。',
+          '<b>铸铁</b>：含碳量大于 [[2.11%]] 的铁碳合金；白口铸铁中碳主要以渗碳体形式存在，工业常用灰口/球墨等铸铁中碳主要以石墨形式存在。'
+        ]},
+        { t: 'table', h: '6.2 四类铸铁的石墨形态与牌号解码',
+          head: ['铸铁类别', '牌号代号', '石墨形态特征', '典型牌号含义解码（必背）'],
+          rows: [
+            ['灰口铸铁', '[[HT]]', '[[片状]]石墨', 'HT200："HT" 代表灰铁，200 表示[[最低抗拉强度]]为 200 MPa'],
+            ['球墨铸铁', '[[QT]]', '[[球状]]石墨（力学性能最好）', 'QT600-3："QT" 代表球铁，600 表示最低抗拉强度不小于 600 MPa，3 表示[[断后伸长率]]不小于 3%'],
+            ['可锻铸铁', '[[KT]]', '[[团絮状]]石墨', '由白口铸铁经长时间[[石墨化退火]]获得，有一定塑韧性'],
+            ['蠕墨铸铁', '[[RuT]]', '[[蠕虫状]]石墨', '性能[[介于灰口铸铁与球墨铸铁之间]]']
+          ]
+        },
+        { t: 'p', h: '7.1 第 7 章 非铁金属（有色金属）', items: [
+          '<b>非铁金属</b>：铁和铁基合金以外的所有金属，又叫[[有色金属]]。',
+          '<b>铜合金</b>：以铜为基体加入其他元素形成的合金，按合金元素分为黄铜、白铜、青铜三大类。'
+        ]},
+        { t: 'table', h: '7.2 三大铜合金成分区别（易错）',
+          head: ['铜合金名称', '主要合金元素', '记忆技巧'],
+          rows: [
+            ['黄铜', '[[Cu - Zn（铜锌合金）]]', '「[[黄锌]]」谐音（原稿括号误写铜-镍，已修正为铜锌合金）'],
+            ['白铜', '[[Cu - Ni（铜镍合金）]]', '「[[白镍]]」：银白色外观'],
+            ['青铜', '[[除 Zn、Ni 外的其他元素]]', '如锡青铜（Cu-Sn）、铝青铜（Cu-Al）、铍青铜']
+          ]
+        },
+        { t: 'p', h: '8.1 第 8 章 其他常用工程材料（非金属材料）', items: [
+          '<b>常用非金属材料大类</b>：塑料、橡胶、化学纤维、涂料、陶瓷、复合材料、玻璃、木材、纸张等。',
+          '<b>高分子聚合物</b>：由成千上万的原子主要以[[共价键]]相连接起来的大分子组成的化合物（简称高聚物）。常见四大高分子材料：[[橡胶、塑料、化学纤维、涂料]]（油漆）。',
+          '<b>塑料</b>：以合成或天然的高分子化合物为主要成分，加入添加剂等辅助成分，经加工而形成塑性或固化交联形成刚性的材料。',
+          '<b>橡胶</b>：以[[生胶]]为主要原料，加入适量配合剂而制成的高分子弹性材料。'
+        ]}
+      ]
+    }
+  ]
+,
+
+  /* ================= 20 张牌号翻转卡 ================= */
+  flashcards: [
+    { code: 'Q235A', cat: '普通碳素结构钢', carbon: '不标含碳量：Q 系列以**屈服强度**定牌号', alloy: 'σs = **235 MPa**，质量等级 **A 级**', point: 'Q = 屈服（"屈"的首字母），数字就是屈服强度值（MPa），**不是含碳量**！' },
+    { code: 'Q345', cat: '低合金高强度结构钢', carbon: '不标含碳量，按强度级别命名', alloy: '屈服强度 **345 MPa**（> 275 MPa）', point: '数字 = 屈服强度（MPa），与含碳量无关；低合金高强钢的典型代表。' },
+    { code: 'Q355NH', cat: '低合金高强度结构钢（耐候钢）', carbon: '不标含碳量', alloy: '屈服点 **≥ 355 MPa**；**NH = 耐候**（耐大气腐蚀）', point: '看到 NH 就想"耐候"：户外钢结构、桥梁、集装箱用钢。' },
+    { code: '45', cat: '优质碳素结构钢', carbon: 'Wc = **0.45%**（两位数字 × 万分之一）', alloy: '不标合金元素（非合金钢）', point: '45 ÷ 100 = 0.45%：**两位数字看万分之几**。' },
+    { code: '60', cat: '优质碳素结构钢', carbon: 'Wc = **0.60%**（两位数字 × 万分之一）', alloy: '不标合金元素（非合金钢）', point: '60 钢是优质碳素结构钢中含碳量较高者（0.60%），常用来做弹簧、钢丝绳。' },
+    { code: '45Mn', cat: '优质碳素结构钢（较高锰）', carbon: 'Wc = **0.45%**', alloy: '含 **Mn ≈ 1.0%**（较高锰）', point: 'Mn 写在数字后表示"较高锰"（约 1%），**不是 45% 的锰**！' },
+    { code: 'T8', cat: '碳素工具钢（优质）', carbon: 'Wc = **0.8%**（T 后数字为千分之几）', alloy: '不标合金元素', point: 'T = 碳（Tan）工；T8 = 0.8% C：**一位数字看千分之几**。' },
+    { code: 'T10A', cat: '碳素工具钢（高级优质）', carbon: 'Wc = **1.0%**', alloy: 'A = **高级优质**（S、P 杂质更少）', point: 'T10A 的 A 是质量等级，**不是铝 Al**！' },
+    { code: 'Y40Mn', cat: '易切削钢', carbon: 'Wc = **0.40%**', alloy: '含 **Mn 较多**（改善切削性能）', point: 'Y = 易（Yi）切削；含 Mn 使切屑易断、加工表面光洁。' },
+    { code: '40Cr', cat: '合金结构钢', carbon: 'Wc = **0.40%**（原稿笔误 0.45%）', alloy: 'Cr **< 1.5%**（不足 1.5% 不标数字）', point: '合金元素 <1.5% 时**不标数字**，所以只写 Cr 不写 1；这是最常用的调质钢。' },
+    { code: '60Si2Mn', cat: '合金结构钢（弹簧钢）', carbon: 'Wc = **0.60%**', alloy: 'Si **≈ 2%**、Mn **≈ 1%**', point: 'Si2 就是 2% 硅；弹簧钢代表，配合**中温回火**获得高弹性极限。' },
+    { code: '38CrMoAl', cat: '合金结构钢（氮化钢）', carbon: 'Wc = **0.38%**', alloy: '含 Cr、Mo、**Al**；合金总量 < 5%（低合金钢）', point: 'Al 是铝（原稿误写 A1）；含 Al 才能渗氮形成高硬度 AlN 层。' },
+    { code: 'GCr15', cat: '滚动轴承钢', carbon: 'Wc ≈ **1.0%**', alloy: 'Cr = **1.5%**（按**千分之几**标！）', point: '唯一例外：轴承钢 Cr 按千分之几标，15 = 1.5%；G = 滚。' },
+    { code: '9SiCr', cat: '合金工具钢', carbon: 'Wc ≈ **0.9%**（一位数字为千分之几）', alloy: 'Si **< 1.5%**、Cr **< 1.5%**', point: '9 = 0.9% C；Si、Cr 都不到 1.5%，所以不标数字。' },
+    { code: 'W18Cr4V', cat: '高速工具钢（刀具钢）', carbon: '**Wc ≈ 1.0%（高速钢含碳量不标出）**', alloy: 'W **≈ 18%**、Cr **≈ 4%**、V **≈ 1%**', point: '高速钢不标碳；W18Cr4V 是数控铣刀首选，靠**红硬性（热硬性）**吃饭。' },
+    { code: '1Cr18Ni9Ti', cat: '奥氏体不锈钢（旧牌号）', carbon: 'Wc ≈ **0.1%**（首位 1 = 0.1%）', alloy: 'Cr **≈ 18%**、Ni **≈ 9%**、Ti **< 1.5%**', point: 'Ti 用来固定碳、防止晶间腐蚀；这是最经典的"18-9"奥氏体不锈钢。' },
+    { code: '06Cr19Ni10', cat: '奥氏体不锈钢（新牌号）', carbon: 'Wc ≈ **0.06%**（新国标两位数字表万分之几）', alloy: 'Cr **≈ 19%**、Ni **≈ 10%**', point: '06 = 0.06% C；对应旧牌号 **0Cr19Ni9**，即日常说的 304。' },
+    { code: 'HT150', cat: '灰口铸铁', carbon: '碳以**片状石墨**存在，含碳量高（>2.11%），牌号不标出', alloy: '最低抗拉强度 **150 MPa**', point: 'HT = 灰铁；数字是**最低抗拉强度**，不是硬度也不是含碳量！' },
+    { code: 'HT200', cat: '灰口铸铁', carbon: '碳以**片状石墨**存在，牌号不标出', alloy: '最低抗拉强度 **200 MPa**', point: '对比记忆：HT150 < HT200，数字越大强度越高。' },
+    { code: 'QT600-3', cat: '球墨铸铁', carbon: '碳以**球状石墨**存在（力学性能最好）', alloy: '最低抗拉强度 **≥ 600 MPa**，断后伸长率 **≥ 3%**', point: 'QT = 球铁；"600-3" 是"强度-伸长率"双指标，**别把 3 当成含碳量**。' }
+  ]
+,
+  /* ================= 28 道判断题（原题完整录入） ================= */
+  tfQuestions: [
+    { n: 1, q: '钢的淬透性越高，淬火后的硬度也越高。', a: false, exp: '淬透性看深度（取决于合金元素），淬火硬度看含碳量，二者无必然联系。' },
+    { n: 2, q: '一般来说，HBS 指标越高的材料，耐磨性越好。', a: true, exp: '硬度越高，表面抵抗磨损压入的能力越强，耐磨性越好。' },
+    { n: 3, q: '金属零件的冲击韧性与工作温度没有关系，温度高低对其韧性没有影响。', a: false, exp: '温度降低到韧脆转变温度以下时，冲击吸收功急剧下降（冷脆现象）。' },
+    { n: 4, q: '如果钢的 C 曲线越靠右，说明该钢在较小的冷却速度下就容易得到马氏体。', a: true, exp: 'C 曲线右移 → 临界冷速 Vk 减小 → 较慢冷速即可淬成马氏体（淬透性好）。' },
+    { n: 5, q: '钢的淬火冷却速度愈快，所获得的硬度愈高，淬透性也愈好。', a: false, exp: '淬透性是钢的固有属性（取决于合金成分），与冷却速度无关。' },
+    { n: 6, q: '钢的合金元素越多，淬火后的硬度越高。', a: true, exp: '原题判 √。注：合金元素溶入奥氏体有固溶强化使淬火硬度略升，但主要仍取决于碳含量，按原题结论记 √。' },
+    { n: 7, q: '淬火钢回火后的性能主要取决于回火后的冷却速度。', a: false, exp: '主要取决于【回火加热温度】（温度越高，硬度越低），而非回火冷速。' },
+    { n: 8, q: '细晶粒组织的可锻性优于粗晶粒组织。', a: true, exp: '晶粒越细，晶界越多，变形越均匀、不易开裂，塑性与可锻性更好。' },
+    { n: 9, q: '刃型位错为线缺陷，空位属于点缺陷。', a: true, exp: '点缺陷：空位 / 间隙 / 置换；线缺陷：刃型 / 螺型位错；面缺陷：晶界 / 亚晶界。' },
+    { n: 10, q: '能够进行热处理的金属材料必然具备同素异构体。', a: false, exp: '不具同素异构转变的合金也可进行去应力退火、再结晶退火或固溶时效处理。' },
+    { n: 11, q: '结晶过程中晶核都以树枝状进行长大。', a: true, exp: '原题判 √。实际金属结晶因温度梯度存在负梯度，绝大多数呈树枝状长大。' },
+    { n: 12, q: 'C 型曲线上过冷奥氏体稳定性最小的区域出现在 550℃ 左右。', a: true, exp: '550℃ 为 C 曲线「鼻尖」位置，孕育期最短，过冷奥氏体最不稳定。' },
+    { n: 13, q: '马氏体转变时往往需要保温一段时间确保马氏体转变充分。', a: false, exp: '马氏体转变是变温、无扩散型切变，需连续冷却至 Mf 以下，保温不能增加转变量。' },
+    { n: 14, q: '钢的扩散退火主要针对共析钢和过共析钢。', a: false, exp: '扩散退火主要用于消除铸锭或铸件的枝晶偏析（成分不均匀），并非针对共析 / 过共析钢。' },
+    { n: 15, q: '零件进行高频感应淬火时电流频率越高，淬硬层深度越浅。', a: true, exp: '集肤效应：频率越高，感应电流越集中于表面，淬硬层越浅。' },
+    { n: 16, q: '拉伸实验可用于测量金属材料的硬化指数。', a: false, exp: '原题判 ×。拉伸实验主要测强度指标 σs、σb 和塑性指标 δ、ψ。' },
+    { n: 17, q: '密排六方晶格包含的原子数是 6，面心立方晶格包含的原子数是 4。', a: true, exp: '口诀：体 2、面 4、六方 6。' },
+    { n: 18, q: '置换固溶体一定是有限固溶体。', a: false, exp: '当两组元晶格相同、原子半径相近等条件满足时，置换固溶体可无限互溶（间隙固溶体才一定是有限固溶体）。' },
+    { n: 19, q: '钢进行热处理加热的目的是为了得到奥氏体组织。', a: true, exp: '绝大多数热处理（退火、正火、淬火）加热均是为了获得均匀奥氏体，为后续冷却转变做准备。' },
+    { n: 20, q: '珠光体、索氏体、屈氏体三种组织无本质区别，只是形态上的粗细之分。', a: true, exp: '三者均为铁素体与渗碳体的层片状机械混合物，仅片层间距 P > S > T 不同。' },
+    { n: 21, q: '金属化合物的特性是硬而脆，莱氏体的性能也是硬而脆，故莱氏体属于金属化合物。', a: false, exp: '莱氏体是（奥氏体 / 珠光体 + 渗碳体）组成的机械混合物，不是金属化合物！' },
+    { n: 22, q: '渗碳体中碳的质量分数为 6.69%。', a: true, exp: 'Fe₃C 的固定含碳量就是 6.69%。' },
+    { n: 23, q: 'Fe-Fe₃C 状态图中，A₃ 温度是随碳的质量分数增加而上升的。', a: false, exp: 'A₃ 线（GS 线）是从 912℃ 向 727℃ 倾斜向下的，随含碳量增加而下降。' },
+    { n: 24, q: '碳溶于 α-Fe 中所形成的间隙固溶体称为奥氏体。', a: false, exp: '溶于 α-Fe 是铁素体（F），溶于 γ-Fe 才是奥氏体（A）。' },
+    { n: 25, q: '在碳钢之中作为杂质元素：硅、锰属于有益元素，磷、硫属于有害元素。', a: true, exp: 'Si、Mn 固溶强化有益；P 引起冷脆、S 引起热脆有害。' },
+    { n: 26, q: '正火的加热温度必须超过 A₁ 线，而淬火的温度可以低于 A₁ 线。', a: false, exp: '淬火加热温度也必须在临界温度 Ac₁（过共析钢）或 Ac₃（亚共析钢）以上。' },
+    { n: 27, q: '钢经过淬火后的硬度肯定比退火后的硬度高。', a: true, exp: '淬火得马氏体（高硬），退火得珠光体 / 铁素体（软）。' },
+    { n: 28, q: '为了使弹簧零件具有较高的弹性，淬火后需要再经过中温回火。', a: true, exp: '口诀：中回托氏做弹簧（350~500℃ 获回火托氏体，弹性极限最高）。' }
+  ]
+,
+
+  /* ================= 20 道选择题（含 3 道双空题） ================= */
+  mcQuestions: [
+    { n: 1, q: '要保证零件能够正常工作，选材料时需要考虑的首要及根本因素是什么？', opts: ['经济成本', '美观性', '工艺性能', '使用性能'], ans: ['D'], exp: '选材三原则（使用性能、工艺性能、经济性）中，使用性能是首要和根本因素。' },
+    { n: 2, q: '一个体心立方晶胞中，包含有（　　）个原子。', opts: ['1', '2', '4', '6'], ans: ['B'], exp: '口诀：体 2、面 4、六方 6。体心立方（BCC）= 2 个原子。' },
+    { n: 3, q: '铁素体为（ ① ）晶格，奥氏体为（ ② ）晶格。', opts: ['体心立方', '面心立方', '密排六方', '复杂的'], ans: ['A', 'B'], exp: '铁素体（α-Fe）为体心立方 BCC，奥氏体（γ-Fe）为面心立方 FCC。' },
+    { n: 4, q: '当共晶转变进行时，合金体系的温度持续如何变化？', opts: ['不变', '升高', '降低', '上下波动'], ans: ['A'], exp: '共晶转变与共析转变均为恒温转变，转变过程中温度保持不变。' },
+    { n: 5, q: 'Fe-Fe₃C 状态图上的 ES 线，用代号（ ① ）表示，PSK 线用代号（ ② ）表示。', opts: ['A₁', 'Acm', 'A₃'], ans: ['B', 'A'], exp: 'ES 线是碳在奥氏体中的溶解度线即 Acm；PSK 线是共析线即 A₁；GS 线是 A₃。' },
+    { n: 6, q: 'Fe-Fe₃C 状态图上的共析线是（ ① ），共晶线是（ ② ）。', opts: ['ECF 线', 'ACD 线', 'PSK 线'], ans: ['C', 'A'], exp: 'PSK 线（727℃）为共析线，ECF 线（1148℃）为共晶线，ACD 为液相线。' },
+    { n: 7, q: '平衡状态下，亚共析钢冷却到室温时的显微组织是（　　）。', opts: ['F + Fe₃CⅢ', 'F + P', 'P', 'P + Fe₃CⅠ'], ans: ['B'], exp: '亚共析钢（0.0218%~0.77% C）室温组织为铁素体 + 珠光体（F + P）。' },
+    { n: 8, q: '根据铁碳合金相图，含碳量为 1.0% 的铁碳合金在 700℃ 时的组织是什么？', opts: ['铁素体 + 莱氏体', '珠光体 + 奥氏体', '珠光体 + 铁素体', '珠光体 + 二次渗碳体'], ans: ['D'], exp: '1.0% C 属于过共析钢（0.77%~2.11%），700℃（低于 727℃）时组织为 P + Fe₃CⅡ。' },
+    { n: 9, q: '以下哪种基本组织是由基本相机械混合组成的多相组织？', opts: ['铁素体', '珠光体', '奥氏体', '渗碳体'], ans: ['B'], exp: '珠光体（P）是铁素体（F）和渗碳体（Fe₃C）组成的机械混合物；其余三者为单相。' },
+    { n: 10, q: '含碳量介于 0.77% ～ 2.11% 的铁碳合金称为什么？', opts: ['亚共析钢', '亚共晶白口铸铁', '过共晶白口铸铁', '过共析钢'], ans: ['D'], exp: '0.77% 为共析点，2.11% 为钢与铸铁分界点，介于二者之间为过共析钢。' },
+    { n: 11, q: '含碳量介于 2.11% — 4.3% 的铁碳合金称为（　　）。', opts: ['亚共析钢', '过共析钢', '亚共晶白口铁', '过共晶白口铁'], ans: ['C'], exp: '2.11%~4.3%（小于共晶点 4.3%）为亚共晶白口铸铁；4.3%~6.69% 为过共晶白口铁。' },
+    { n: 12, q: '含碳量介于 0.77% ～ 2.11% 的铁碳合金称为什么？（原题重复巩固）', opts: ['亚共析钢', '亚共晶白口铸铁', '过共晶白口铸铁', '过共析钢'], ans: ['D'], exp: '同第 10 题，牢固锁定「过共析钢」区间：0.77% ~ 2.11%。' },
+    { n: 13, q: '65 钢的含碳量约为多少？', opts: ['0.065%', '0.65%', '6.5%', '65%'], ans: ['B'], exp: '优质碳素结构钢两位数字表示平均含碳量的万分之几：65 = 0.65%。' },
+    { n: 14, q: '调质处理是淬火加下列哪种热处理形式？', opts: ['高温回火', '中温回火', '低温回火', '高温正火'], ans: ['A'], exp: '黄金公式：调质处理 = 淬火 + 高温回火（500~600℃），获得回火索氏体。' },
+    { n: 15, q: '马氏体相变是（　　）型相变。', opts: ['扩散', '半扩散', '无扩散', '半凝聚'], ans: ['C'], exp: '珠光体 = 扩散型；贝氏体 = 半扩散型；马氏体 = 无扩散型（切变共格）。' },
+    { n: 16, q: '马氏体相变是什么类型相变。（原题重复巩固）', opts: ['扩散', '半扩散', '无扩散', '半凝聚'], ans: ['C'], exp: '同第 15 题，牢记马氏体相变为无扩散型相变。' },
+    { n: 17, q: '回火马氏体是淬火加下列哪种热处理形式所形成的？', opts: ['高温回火', '中温回火', '低温回火', '高温正火'], ans: ['C'], exp: '低温回火（150~250℃）→ 回火马氏体；中温回火 → 回火托氏体；高温回火 → 回火索氏体。' },
+    { n: 18, q: '牌号用「HT250」表示的材料前面的数字「250」表示（　　）。', opts: ['抗弯强度', '最大抗压强度', '屈服强度', '最低抗拉强度'], ans: ['D'], exp: 'HT250 为灰口铸铁，250 表示最低抗拉强度为 250 MPa。' },
+    { n: 19, q: '制造数控铣刀应选择以下哪类钢种及牌号？', opts: ['碳素结构钢 Q235', '碳素工具钢 T10', '高速钢 W18Cr4V', '灰铸铁 HT150'], ans: ['C'], exp: '数控铣刀高速切削需极高红硬性（热硬性），必须选用高速工具钢 W18Cr4V。' },
+    { n: 20, q: '低碳钢的含碳量是处于哪一个含碳量的范围？', opts: ['0.0218%~0.25%', '0.25%~0.6%', '0.6%~0.77%', '0.77%~2.11%'], ans: ['A'], exp: '低碳钢 Wc < 0.25%；中碳钢 Wc = 0.25%~0.60%；高碳钢 Wc > 0.60%。' }
+  ]
+};
+
+/* =========================================================
+   1. 本地存储（独立命名空间，避免同账号多仓库互相覆盖）
+   ========================================================= */
+const KEY = {
+  wrong: 'eng_mat_2026_wrong',
+  cards: 'eng_mat_2026_cards',
+  progress: 'eng_mat_2026_progress'
+};
+
+function loadJSON(key, def) {
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) return def;
+    const v = JSON.parse(raw);
+    return (v && typeof v === 'object') ? v : def;
+  } catch (e) { return def; }
+}
+function saveJSON(key, val) {
+  try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {}
+}
+
+let wrongBook = loadJSON(KEY.wrong, {});
+let cardState = loadJSON(KEY.cards, {});
+let progress = loadJSON(KEY.progress, null) || {};
+progress.revealed = progress.revealed || {};
+progress.answered = progress.answered || {};
+progress.right = progress.right || {};
+if (typeof progress.cloze !== 'boolean') progress.cloze = false;
+if (typeof progress.ch !== 'string') progress.ch = 'all';
+
+/* =========================================================
+   2. 全局状态
+   ========================================================= */
+const state = {
+  tab: 'read',
+  ch: progress.ch,
+  cloze: progress.cloze === true,
+  cardIdx: 0
+};
+const quiz = {
+  mode: 'seq',
+  order: [],
+  i: 0,
+  sel: [],
+  judged: false,
+  ok: false,
+  finished: false,
+  sTotal: 0,
+  sRight: 0,
+  marks: {},
+  ovHide: false
+};
+
+/* =========================================================
+   3. 工具函数
+   ========================================================= */
+const $ = id => document.getElementById(id);
+
+function esc(s) {
+  return String(s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+/* 支持 **加粗** 与 [[挖空]] 两种标记 */
+function fmt(s) {
+  let t = esc(s);
+  /* 允许数据中使用 <b></b> 做强调（仅此一种标签） */
+  t = t.replace(/&lt;(\/?b)&gt;/g, '<$1>');
+  t = t.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+  t = t.replace(/\[\[(.+?)\]\]/g, '<span class="blank">$1</span>');
+  t = t.replace(/\n/g, '<br>');
+  return t;
+}
+function pad2(n) { return n < 10 ? '0' + n : '' + n; }
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+let toastTimer = null;
+function toast(msg) {
+  const t = $('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2300);
+}
+
+/* =========================================================
+   4. 顶部统计
+   ========================================================= */
+function renderStats() {
+  $('stDone').textContent = Object.keys(progress.answered).length;
+  $('stWrong').textContent = Object.keys(wrongBook).length;
+  let known = 0;
+  Object.keys(cardState).forEach(k => { if (cardState[k] === 'known') known++; });
+  $('stCards').textContent = known;
+}
+
+/* =========================================================
+   5. Tab 1 —— 考点背诵
+   ========================================================= */
+function guideHTML() {
+  return '<div class="guide">' +
+    '<h3>💡 三轮高效记忆法</h3>' +
+    '<p class="sub">全 8 章核心考点表解 + 记忆口诀 + 48 道真题，按这三轮走完即可上考场。</p>' +
+    '<div class="g-step"><span class="g-num">1</span><div><b>建框架</b>：先通读每章对比表，把硬度、晶格、相图、四把火、回火、牌号横向摆在一起看，记忆效率翻倍。</div></div>' +
+    '<div class="g-step"><span class="g-num">2</span><div><b>抓得分</b>：重点背琥珀色卡片里的口诀与避坑指南，配合相图表格练「看图写组织」。</div></div>' +
+    '<div class="g-step"><span class="g-num">3</span><div><b>检漏洞</b>：打开背诵遮挡挖空自测，再去刷 48 道真题，错题本清零就稳了。</div></div>' +
+    '</div>';
+}
+
+function blockHTML(b) {
+  if (b.t === 'p') {
+    return '<div class="blk"><div class="blk-h">' + esc(b.h) + '</div>' +
+      b.items.map(x => '<p class="li">' + fmt(x) + '</p>').join('') + '</div>';
+  }
+  if (b.t === 'table') {
+    const n = b.head.length;
+    let chars = 0, cnt = 0;
+    b.head.forEach(h => { chars += String(h).length; cnt++; });
+    b.rows.forEach(r => r.forEach(c => { chars += String(c).length; cnt++; }));
+    const avg = chars / Math.max(1, cnt);
+    /* 列多或单格文字长 → 小屏折叠为卡片式，避免挤成豆腐块 */
+    const stack = (n >= 5 || avg > 26) ? ' stack' : '';
+    const w = n >= 5 ? n * 100 : (n === 4 ? 420 : 310);
+    return '<div class="blk"><div class="blk-h">' + esc(b.h) + '</div>' +
+      '<div class="tw' + stack + '"><table style="min-width:' + w + 'px"><thead><tr>' +
+      b.head.map(h => '<th>' + fmt(h) + '</th>').join('') +
+      '</tr></thead><tbody>' +
+      b.rows.map(r => '<tr>' + r.map((c, i) => '<td data-label="' + esc((b.head[i] || '').split('（')[0]) + '">' + fmt(c) + '</td>').join('') + '</tr>').join('') +
+      '</tbody></table></div>' +
+      (b.note ? '<div class="tbl-note">' + fmt(b.note) + '</div>' : '') + '</div>';
+  }
+  if (b.t === 'qa') {
+    return '<div class="blk"><div class="qa"><div class="qa-q">' + fmt(b.q) + '</div>' +
+      '<div class="qa-a">' + fmt(b.a) + '</div></div></div>';
+  }
+  if (b.t === 'note') {
+    return '<div class="blk"><div class="note ' + b.kind + '"><b>' + esc(b.h) + '</b><div>' + fmt(b.text) + '</div></div></div>';
+  }
+  if (b.t === 'chain') {
+    return '<div class="blk"><div class="blk-h">' + esc(b.h) + '</div><div class="chain">' +
+      b.steps.map((s, i) => (i ? '<span class="arw">→</span>' : '') + '<span class="step">' + fmt(s) + '</span>').join('') +
+      '</div>' + (b.note ? '<div class="tbl-note">' + fmt(b.note) + '</div>' : '') + '</div>';
+  }
+  if (b.t === 'bars') {
+    return '<div class="blk"><div class="blk-h">' + esc(b.h) + '</div><div class="bars">' +
+      b.rows.map(r => '<div class="bar-row"><span class="bar-lb">' + fmt(r.k) + '</span>' +
+        '<div class="bar-track"><div class="bar-fill" style="width:' + r.w + '%"></div></div>' +
+        '<span class="bar-v">' + fmt(r.v) + '</span></div>').join('') +
+      '</div>' + (b.note ? '<div class="tbl-note">' + fmt(b.note) + '</div>' : '') + '</div>';
+  }
+  return '';
+}
+
+function chapterHTML(ch) {
+  const tips = ch.tips.map(t =>
+    '<div class="tip"><b>' + esc(t.h) + '：</b>' + fmt(t.t) + '</div>'
+  ).join('');
+  return '<article class="chapter" data-ch="' + ch.id + '">' +
+    '<div class="ch-head"><div><div class="ch-no">CHAPTER ' + esc(ch.no) + '</div>' +
+    '<div class="ch-title">' + esc(ch.name) + '　' + esc(ch.title) + '</div></div>' +
+    '<span class="ch-cnt">遮罩 0/0</span></div>' +
+    '<div class="ch-focus">🎯 核心聚焦：' + esc(ch.focus) + '</div>' +
+    '<div class="tips"><div class="tips-h">🧠 记忆口诀与避坑指南</div>' + tips + '</div>' +
+    ch.blocks.map(blockHTML).join('') +
+    '</article>';
+}
+
+function renderChapters() {
+  const list = STUDY_DATA.chapters.filter(c => state.ch === 'all' || c.id === state.ch);
+  $('chapterList').innerHTML = (state.ch === 'all' ? guideHTML() : '') + list.map(chapterHTML).join('');
+  bindBlanks();
+}
+
+function bindBlanks() {
+  document.querySelectorAll('#chapterList .chapter').forEach(card => {
+    const arr = progress.revealed[card.dataset.ch] || [];
+    card.querySelectorAll('.blank').forEach((el, i) => {
+      el.dataset.i = i;
+      if (arr.indexOf(i) >= 0) el.classList.add('revealed');
+    });
+  });
+  /* 仍会横向溢出的表格，补一条滑动提示 */
+  document.querySelectorAll('#chapterList .tw').forEach(tw => {
+    if (tw.scrollWidth > tw.clientWidth + 4) {
+      const nx = tw.nextElementSibling;
+      if (!nx || !nx.classList.contains('swipe-tip')) {
+        tw.insertAdjacentHTML('afterend', '<div class="swipe-tip">← 左右滑动查看完整表格 →</div>');
+      }
+    }
+  });
+  updateClozeMeta();
+}
+
+function updateClozeMeta() {
+  let total = 0, done = 0;
+  document.querySelectorAll('#chapterList .chapter').forEach(card => {
+    const blanks = card.querySelectorAll('.blank');
+    const rev = card.querySelectorAll('.blank.revealed');
+    total += blanks.length; done += rev.length;
+    const cnt = card.querySelector('.ch-cnt');
+    if (cnt) cnt.textContent = state.cloze ? ('遮罩 ' + rev.length + '/' + blanks.length) : (blanks.length + ' 个可遮挡考点');
+  });
+  $('clozeCnt').textContent = done + ' / ' + total;
+  $('clozeLabel').textContent = state.cloze ? '背诵遮挡已开启' : '已显示全部答案';
+  $('clozeHint').textContent = state.cloze ? '点击深色遮罩可单块翻开自测' : '打开开关进入挖空自测模式';
+}
+
+function renderFilter() {
+  const items = [{ id: 'all', name: '全部' }].concat(
+    STUDY_DATA.chapters.map(c => ({ id: c.id, name: c.name }))
+  );
+  $('chFilter').innerHTML = items.map(it =>
+    '<button class="chip' + (state.ch === it.id ? ' active' : '') + '" data-ch="' + it.id + '">' + esc(it.name) + '</button>'
+  ).join('');
+}
+
+/* =========================================================
+   6. Tab 2 —— 牌号翻转卡
+   ========================================================= */
+function renderCard() {
+  const list = STUDY_DATA.flashcards;
+  if (state.cardIdx >= list.length) state.cardIdx = 0;
+  if (state.cardIdx < 0) state.cardIdx = list.length - 1;
+  const c = list[state.cardIdx];
+  const st = cardState[c.code];
+
+  $('fcCount').textContent = (state.cardIdx + 1) + ' / ' + list.length;
+  const stEl = $('fcState');
+  stEl.textContent = st === 'known' ? '✅ 已牢记' : st === 'weak' ? '🔁 待强化' : '未标记';
+  stEl.className = 'fc-state' + (st ? ' ' + st : '');
+
+  $('fcFront').innerHTML =
+    '<div class="fc-chip">' + esc(c.cat.split('（')[0]) + '</div>' +
+    '<div class="fc-code' + (c.code.length > 7 ? ' sm' : '') + '">' + esc(c.code) + '</div>' +
+    '<div class="fc-hint">轻点卡片翻转 · 看细分类别与成分解码</div>';
+
+  $('fcBack').innerHTML =
+    '<div class="fc-bh">DECODE · 牌号解码</div>' +
+    '<div class="fc-code-b">' + esc(c.code) + '</div>' +
+    '<div class="fc-row"><span class="fc-k">细分类别</span><span class="fc-v">' + fmt(c.cat) + '</span></div>' +
+    '<div class="fc-row"><span class="fc-k">含碳量</span><span class="fc-v">' + fmt(c.carbon) + '</span></div>' +
+    '<div class="fc-row"><span class="fc-k">合金成分</span><span class="fc-v">' + fmt(c.alloy) + '</span></div>' +
+    '<div class="fc-point"><b>记忆点：</b>' + fmt(c.point) + '</div>';
+
+  $('fcInner').classList.remove('flipped');
+  renderDots();
+}
+
+function renderDots() {
+  const list = STUDY_DATA.flashcards;
+  $('fcDots').innerHTML = list.map((c, i) => {
+    const st = cardState[c.code];
+    let cls = 'dot';
+    if (i === state.cardIdx) cls += ' cur';
+    else if (st === 'known') cls += ' known';
+    else if (st === 'weak') cls += ' weak';
+    return '<button class="' + cls + '" data-card="' + i + '" aria-label="' + esc(c.code) + '">' + (i + 1) + '</button>';
+  }).join('');
+}
+
+let cardTimer = null;
+function markCard(v) {
+  const c = STUDY_DATA.flashcards[state.cardIdx];
+  const unmark = cardState[c.code] === v;
+  if (unmark) delete cardState[c.code];
+  else cardState[c.code] = v;
+  saveJSON(KEY.cards, cardState);
+  renderStats();
+
+  /* 取消标记：提示改为「已取消标记」，停留在当前卡片，不自动跳下一张 */
+  if (unmark) {
+    clearTimeout(cardTimer);
+    toast('已取消标记');
+    const stEl = $('fcState');
+    stEl.textContent = '未标记';
+    stEl.className = 'fc-state';
+    renderDots();
+    return;
+  }
+
+  toast(v === 'known' ? '✅ 已标记为牢记' : '🔁 已加入重点强化');
+  clearTimeout(cardTimer);
+  cardTimer = setTimeout(() => {
+    state.cardIdx = (state.cardIdx + 1) % STUDY_DATA.flashcards.length;
+    renderCard();
+  }, 240);
+}
+
+/* =========================================================
+   7. Tab 3 —— 真题刷题
+   ========================================================= */
+const ALLQ = STUDY_DATA.tfQuestions.map(q => ({
+  id: 'tf-' + q.n, kind: 'tf', n: q.n, q: q.q, a: q.a, exp: q.exp, dual: false
+})).concat(STUDY_DATA.mcQuestions.map(q => ({
+  id: 'mc-' + q.n, kind: 'mc', n: q.n, q: q.q, opts: q.opts, ans: q.ans, exp: q.exp, dual: q.ans.length > 1
+})));
+const QMAP = {};
+ALLQ.forEach(q => { QMAP[q.id] = q; });
+
+function buildOrder(mode) {
+  if (mode === 'seq') return ALLQ.map(q => q.id);
+  if (mode === 'rand') return shuffle(ALLQ.map(q => q.id));
+  if (mode === 'wrong') return ALLQ.filter(q => wrongBook[q.id]).map(q => q.id);
+  return [];
+}
+
+function setMode(mode) {
+  quiz.mode = mode;
+  document.querySelectorAll('#modeBar .mode').forEach(b =>
+    b.classList.toggle('active', b.dataset.mode === mode));
+  if (mode === 'overview') { quiz.finished = false; renderQuiz(); return; }
+  quiz.order = buildOrder(mode);
+  quiz.i = 0; quiz.sel = []; quiz.judged = false; quiz.ok = false; quiz.finished = false;
+  quiz.sTotal = 0; quiz.sRight = 0; quiz.marks = {};
+  renderQuiz();
+}
+
+function ansText(q) {
+  if (q.kind === 'tf') return q.a ? '√ 正确' : '× 错误';
+  if (q.dual) return q.ans.map((L, i) => '第' + (i + 1) + '空 ' + L).join(' ｜ ');
+  return q.ans[0];
+}
+
+function optsHTML(q) {
+  if (q.kind === 'tf') {
+    const arr = [{ k: '1', v: 'T', t: '正确 √' }, { k: '2', v: 'F', t: '错误 ×' }];
+    return arr.map(o => {
+      let cls = 'opt';
+      if (quiz.judged) {
+        const isAns = (o.v === 'T') === q.a;
+        if (isAns) cls += ' correct';
+        else if (quiz.sel[0] === o.v) cls += ' wrong';
+        else cls += ' dim';
+      } else if (quiz.sel[0] === o.v) cls += ' sel';
+      return '<button class="' + cls + '" data-pick="' + o.v + '">' +
+        '<span class="key">' + o.k + '</span><span class="ot">' + o.t + '</span></button>';
+    }).join('');
+  }
+  return q.opts.map((t, i) => {
+    const L = 'ABCD'[i];
+    let cls = 'opt';
+    if (quiz.judged) {
+      if (q.ans.indexOf(L) >= 0) cls += ' correct';
+      else if (quiz.sel.indexOf(L) >= 0) cls += ' wrong';
+      else cls += ' dim';
+    } else if (quiz.sel.indexOf(L) >= 0) cls += ' sel';
+    const badge = (q.dual && quiz.sel.indexOf(L) >= 0)
+      ? '<span class="ord">' + (quiz.sel.indexOf(L) + 1) + '</span>' : '';
+    return '<button class="' + cls + '" data-pick="' + L + '">' +
+      '<span class="key">' + L + '</span><span class="ot">' + fmt(t) + '</span>' + badge + '</button>';
+  }).join('');
+}
+
+function renderQuiz() {
+  const body = $('quizBody');
+  const prog = $('quizProg');
+
+  if (quiz.mode === 'overview') {
+    prog.innerHTML = '';
+    body.innerHTML = overviewHTML();
+    return;
+  }
+  if (!quiz.order.length) {
+    prog.innerHTML = '';
+    body.innerHTML = '<div class="empty"><span class="big">🎉</span>错题本是空的<br>你还没有答错的题目，先去顺序刷一轮吧' +
+      '<div style="margin-top:14px"><button class="btn pri" id="qBackSeq" style="max-width:220px;margin:0 auto">去顺序刷题</button></div></div>';
+    return;
+  }
+  if (quiz.finished) {
+    prog.innerHTML = '';
+    const rate = quiz.sTotal ? Math.round(quiz.sRight / quiz.sTotal * 100) : 0;
+    body.innerHTML = '<div class="qcard done"><div class="done-ico">🎉</div>' +
+      '<h3>本组题目已刷完</h3>' +
+      '<p>本轮作答 <b>' + quiz.sTotal + '</b> 题 · 首答正确 <b>' + quiz.sRight + '</b> 题 · 正确率 <b>' + rate + '%</b></p>' +
+      '<div class="fc-actions2"><button class="btn pri" id="qAgain">再刷一轮</button>' +
+      '<button class="btn ghost" id="qToWrong">查看错题本</button></div></div>';
+    return;
+  }
+
+  const q = QMAP[quiz.order[quiz.i]];
+  const total = quiz.order.length;
+
+  prog.innerHTML = '<div class="pg-txt"><span>第 <b>' + (quiz.i + 1) + '</b> / ' + total + ' 题</span>' +
+    '<span class="pg-rate">' + (quiz.sTotal ? '首答正确率 ' + Math.round(quiz.sRight / quiz.sTotal * 100) + '%' : '') + '</span></div>' +
+    '<div class="pg-track"><div class="pg-fill" style="width:' + Math.round(quiz.i / total * 100) + '%"></div></div>';
+
+  const tagCls = q.kind === 'tf' ? 'q-tag' : (q.dual ? 'q-tag dual' : 'q-tag');
+  const tagTxt = q.kind === 'tf' ? '判断题' : (q.dual ? '双空选择题' : '单项选择题');
+
+  let html = '<div class="qcard">' +
+    '<div class="q-top"><span class="' + tagCls + '">' + tagTxt + '</span>' +
+    '<span class="q-no">No.' + pad2(q.n) + '</span></div>' +
+    '<div class="q-stem">' + fmt(q.q).replace(/（\s*①\s*）/g, '（<span class="u">①</span>）').replace(/（\s*②\s*）/g, '（<span class="u">②</span>）') + '</div>';
+
+  if (q.dual) {
+    html += '<div class="dual-hint">本题为双空题：请按顺序点选 —— 第 <b>①</b> 空 → 第 <b>②</b> 空（再点一次可取消该选项）</div>';
+  }
+  html += '<div class="opts">' + optsHTML(q) + '</div>';
+
+  if (quiz.judged) {
+    if (quiz.ok) {
+      let extra = '';
+      if (q.dual) extra += '<span class="my">' + ansText(q) + '</span>';
+      if (wrongBook[q.id]) extra += '<span class="my">（本题仍在错题本，可手动移出）</span>';
+      html += '<div class="res ok">✅ 回答正确' + extra + '</div>';
+    } else {
+      html += '<div class="res no">❌ 回答错误 <span class="my">正确答案：' + ansText(q) + ' · 已存入错题本</span></div>';
+    }
+    html += '<div class="exp"><div class="exp-h">秒杀解析</div><p>' + fmt(q.exp) + '</p></div>';
+  }
+
+  html += '<div class="q-nav">' +
+    '<button class="btn ghost" id="qPrev"' + (quiz.i === 0 ? ' disabled' : '') + '>◀ 上一题</button>' +
+    '<button class="btn pri" id="qNext">' + (quiz.i === total - 1 ? '完成本组 ✓' : '下一题 ▶') + '</button>' +
+    '</div>';
+
+  let extra = '';
+  if (quiz.judged) extra += '<button class="btn ghost" id="qRedo">↺ 重做本题</button>';
+  if (wrongBook[q.id]) extra += '<button class="btn ok" id="qUnmark">✔ 移出错题本</button>';
+  if (extra) {
+    const two = quiz.judged && wrongBook[q.id];
+    html += '<div class="fc-actions2' + (two ? '' : ' one') + '" style="margin-top:8px">' + extra + '</div>';
+  }
+
+  html += '<div class="kbd-tip">键盘：A / B / C / D 或 1 / 2 选答案 · Enter 或 → 下一题 · ← 上一题</div></div>';
+
+  body.innerHTML = html;
+}
+
+function overviewHTML() {
+  let h = '<div class="ov-bar"><div class="ov-info">共 <b>48</b> 题 · 判断 28 + 选择 20</div>' +
+    '<button class="ov-toggle" id="ovToggle">' + (quiz.ovHide ? '👁 显示解析' : '🙈 遮挡解析') + '</button></div>';
+
+  h += '<div class="ov-sec">判断题 <span>28 题 · 正确 √ / 错误 ×</span></div>';
+  h += STUDY_DATA.tfQuestions.map(q => {
+    const flag = wrongBook['tf-' + q.n] ? '<span class="ov-flag">错题</span>' : '';
+    return '<div class="ov-item' + (quiz.ovHide ? ' hide-exp' : '') + '">' +
+      '<div class="ov-line"><span class="ov-no">' + pad2(q.n) + '</span>' +
+      '<div class="ov-q">' + fmt(q.q) + flag + '</div>' +
+      '<span class="ans">' + (q.a ? '√' : '×') + '</span></div>' +
+      '<div class="ov-exp">' + fmt(q.exp) + '</div></div>';
+  }).join('');
+
+  h += '<div class="ov-sec">选择题 <span>20 题 · 含 3 道双空</span></div>';
+  h += STUDY_DATA.mcQuestions.map(q => {
+    const flag = wrongBook['mc-' + q.n] ? '<span class="ov-flag">错题</span>' : '';
+    const dual = q.ans.length > 1;
+    const opts = q.opts.map((t, i) => {
+      const L = 'ABCD'[i];
+      const isAns = q.ans.indexOf(L) >= 0;
+      return '<i>' + L + '.</i>' + (isAns ? '<b>' + esc(t) + '</b>' : esc(t));
+    }).join('　');
+    const ansLabel = dual
+      ? q.ans.map((L, i) => '①②'[i] + L).join(' ')
+      : q.ans[0];
+    return '<div class="ov-item' + (quiz.ovHide ? ' hide-exp' : '') + '">' +
+      '<div class="ov-line"><span class="ov-no">' + pad2(q.n) + '</span>' +
+      '<div class="ov-q">' + fmt(q.q) + flag + '</div>' +
+      '<span class="ans">' + ansLabel + '</span></div>' +
+      '<div class="ov-opts">' + opts + '</div>' +
+      '<div class="ov-exp">' + fmt(q.exp) + '</div></div>';
+  }).join('');
+
+  return h;
+}
+
+function handlePick(v) {
+  const q = QMAP[quiz.order[quiz.i]];
+  if (!q || quiz.judged) return;
+  if (q.kind === 'tf') { quiz.sel = [v]; judgeNow(); return; }
+  /* 选项越界校验：3 个选项的题按 D / 4 键直接忽略，不计入作答 */
+  const oi = 'ABCD'.indexOf(v);
+  if (oi < 0 || oi >= q.opts.length) return;
+  if (!q.dual) { quiz.sel = [v]; judgeNow(); return; }
+  if (quiz.sel.indexOf(v) >= 0) {
+    quiz.sel = quiz.sel.filter(x => x !== v);
+    renderQuiz(); return;
+  }
+  if (quiz.sel.length >= 2) quiz.sel = [quiz.sel[1]];
+  quiz.sel.push(v);
+  if (quiz.sel.length === 2) judgeNow();
+  else renderQuiz();
+}
+
+function judgeNow() {
+  const q = QMAP[quiz.order[quiz.i]];
+  const right = q.kind === 'tf'
+    ? ((quiz.sel[0] === 'T') === q.a)
+    : (q.ans.join('') === quiz.sel.join(''));
+
+  quiz.judged = true;
+  quiz.ok = right;
+  /* 本轮按「首次作答」计分：重做 / 回退重答不会重复累加 sTotal */
+  if (!Object.prototype.hasOwnProperty.call(quiz.marks, q.id)) {
+    quiz.marks[q.id] = right;
+    quiz.sTotal++;
+    if (right) quiz.sRight++;
+  }
+
+  progress.answered[q.id] = 1;
+  if (right) progress.right[q.id] = 1;
+  else delete progress.right[q.id];
+
+  if (!right) {
+    const rec = wrongBook[q.id] || { n: 0 };
+    rec.n++;
+    rec.my = quiz.sel.join('');
+    rec.ts = Date.now();
+    wrongBook[q.id] = rec;
+    saveJSON(KEY.wrong, wrongBook);
+  }
+  saveJSON(KEY.progress, progress);
+  renderStats();
+  renderQuiz();
+}
+
+function nextQ() {
+  if (!quiz.order.length) return;
+  if (quiz.i >= quiz.order.length - 1) { quiz.finished = true; renderQuiz(); return; }
+  quiz.i++; quiz.sel = []; quiz.judged = false; quiz.ok = false;
+  renderQuiz();
+  scrollQuizTop();
+}
+function prevQ() {
+  if (quiz.i <= 0) return;
+  quiz.i--; quiz.sel = []; quiz.judged = false; quiz.ok = false;
+  renderQuiz();
+  scrollQuizTop();
+}
+function scrollQuizTop() {
+  const panel = $('panel-quiz');
+  const top = panel.getBoundingClientRect().top + window.pageYOffset - 58;
+  if (window.pageYOffset > top) window.scrollTo({ top: top, behavior: 'smooth' });
+}
+
+/* =========================================================
+   8. Tab 切换 / 分享 / 复制
+   ========================================================= */
+function switchTab(tab) {
+  state.tab = tab;
+  document.querySelectorAll('.tab').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + tab));
+  progress.tab = tab;
+  saveJSON(KEY.progress, progress);
+  window.scrollTo(0, 0);
+}
+
+function fallbackCopy(text) {
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;padding:0;border:0;opacity:0;';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    ta.setSelectionRange(0, text.length);
+    const ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    return ok;
+  } catch (e) { return false; }
+}
+
+function copyText(text) {
+  return new Promise(resolve => {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text)
+        .then(() => resolve(true))
+        .catch(() => resolve(fallbackCopy(text)));
+    } else {
+      resolve(fallbackCopy(text));
+    }
+  });
+}
+
+/* =========================================================
+   9. 事件绑定
+   ========================================================= */
+function bindEvents() {
+  /* --- tabs --- */
+  document.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+  });
+
+  /* --- 分享 --- */
+  $('shareBtn').addEventListener('click', async () => {
+    const url = window.location.href;
+    const ok = await copyText(url);
+    if (ok) {
+      toast('链接已复制，快发到宿舍群一起背题！');
+    } else {
+      window.prompt('自动复制失败，请长按选中下方链接手动复制：', url);
+    }
+  });
+
+  /* --- 章节筛选 --- */
+  $('chFilter').addEventListener('click', e => {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+    state.ch = chip.dataset.ch;
+    progress.ch = state.ch;
+    saveJSON(KEY.progress, progress);
+    renderFilter();
+    renderChapters();
+    window.scrollTo(0, 0);
+  });
+
+  /* --- 挖空遮罩开关 --- */
+  $('clozeToggle').addEventListener('change', e => {
+    state.cloze = e.target.checked;
+    progress.cloze = state.cloze;
+    saveJSON(KEY.progress, progress);
+    document.body.classList.toggle('cloze', state.cloze);
+    updateClozeMeta();
+  });
+
+  /* --- 单块翻开 --- */
+  $('chapterList').addEventListener('click', e => {
+    const el = e.target.closest('.blank');
+    if (!el || !state.cloze) return;
+    el.classList.toggle('revealed');
+    const chId = el.closest('.chapter').dataset.ch;
+    const i = parseInt(el.dataset.i, 10);
+    const arr = progress.revealed[chId] || (progress.revealed[chId] = []);
+    if (el.classList.contains('revealed')) {
+      if (arr.indexOf(i) < 0) arr.push(i);
+    } else {
+      const p = arr.indexOf(i);
+      if (p >= 0) arr.splice(p, 1);
+    }
+    saveJSON(KEY.progress, progress);
+    updateClozeMeta();
+  });
+
+  /* --- 翻转卡 --- */
+  $('fc').addEventListener('click', () => {
+    $('fcInner').classList.toggle('flipped');
+  });
+  $('fcFlip').addEventListener('click', e => {
+    e.stopPropagation();
+    $('fcInner').classList.toggle('flipped');
+  });
+  $('fcPrev').addEventListener('click', () => {
+    state.cardIdx = (state.cardIdx - 1 + STUDY_DATA.flashcards.length) % STUDY_DATA.flashcards.length;
+    renderCard();
+  });
+  $('fcNext').addEventListener('click', () => {
+    state.cardIdx = (state.cardIdx + 1) % STUDY_DATA.flashcards.length;
+    renderCard();
+  });
+  $('fcRandom').addEventListener('click', () => {
+    if (STUDY_DATA.flashcards.length < 2) return;
+    let n = state.cardIdx;
+    while (n === state.cardIdx) n = Math.floor(Math.random() * STUDY_DATA.flashcards.length);
+    state.cardIdx = n;
+    renderCard();
+    toast('🎲 随机抽到：' + STUDY_DATA.flashcards[n].code);
+  });
+  $('fcWeakOnly').addEventListener('click', () => {
+    const weak = [];
+    STUDY_DATA.flashcards.forEach((c, i) => { if (cardState[c.code] === 'weak') weak.push(i); });
+    if (!weak.length) { toast('还没有标记「没记住」的牌号'); return; }
+    let n = weak[Math.floor(Math.random() * weak.length)];
+    state.cardIdx = n;
+    renderCard();
+    toast('🎯 重点强化：' + STUDY_DATA.flashcards[n].code);
+  });
+  $('fcKnown').addEventListener('click', () => markCard('known'));
+  $('fcWeak').addEventListener('click', () => markCard('weak'));
+  $('fcDots').addEventListener('click', e => {
+    const d = e.target.closest('.dot');
+    if (!d) return;
+    state.cardIdx = parseInt(d.dataset.card, 10);
+    renderCard();
+  });
+
+  /* --- 刷题模式 --- */
+  $('modeBar').addEventListener('click', e => {
+    const b = e.target.closest('.mode');
+    if (!b) return;
+    setMode(b.dataset.mode);
+  });
+
+  /* --- 答题区事件委托 --- */
+  $('quizBody').addEventListener('click', e => {
+    const ovExp = e.target.closest('.ov-exp');
+    if (ovExp) {
+      const item = ovExp.closest('.ov-item');
+      if (item && item.classList.contains('hide-exp')) item.classList.add('revealed');
+      return;
+    }
+    const pick = e.target.closest('[data-pick]');
+    if (pick) { handlePick(pick.dataset.pick); return; }
+
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    switch (btn.id) {
+      case 'qNext': nextQ(); break;
+      case 'qPrev': prevQ(); break;
+      case 'qRedo':
+        quiz.sel = []; quiz.judged = false; quiz.ok = false; renderQuiz(); break;
+      case 'qUnmark': {
+        const q = QMAP[quiz.order[quiz.i]];
+        if (q && wrongBook[q.id]) {
+          delete wrongBook[q.id];
+          saveJSON(KEY.wrong, wrongBook);
+          renderStats(); renderQuiz();
+          toast('已移出错题本');
+        }
+        break;
+      }
+      case 'qAgain': setMode(quiz.mode); break;
+      case 'qToWrong': setMode('wrong'); break;
+      case 'qBackSeq': setMode('seq'); break;
+      case 'ovToggle': quiz.ovHide = !quiz.ovHide; renderQuiz(); break;
+    }
+  });
+
+  /* --- 键盘快捷键（电脑端） --- */
+  document.addEventListener('keydown', e => {
+    if (state.tab !== 'quiz' || quiz.mode === 'overview' || quiz.finished) return;
+    if (!quiz.order.length) return;
+    const k = e.key;
+    const low = k.toLowerCase();
+    const ae = document.activeElement;
+    const tag = ae && ae.tagName ? ae.tagName.toUpperCase() : '';
+    const onControl = tag === 'BUTTON' || tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || !!(ae && ae.isContentEditable);
+    if (k === 'Enter') {
+      /* 焦点在按钮 / 输入框上时交给浏览器默认行为，避免按一次触发两个动作；
+         仅在已判分且焦点不在控件上时才进入下一题 */
+      if (onControl || !quiz.judged) return;
+      e.preventDefault(); nextQ(); return;
+    }
+    if (k === 'ArrowRight') { e.preventDefault(); nextQ(); return; }
+    if (k === 'ArrowLeft') { e.preventDefault(); prevQ(); return; }
+    const q = QMAP[quiz.order[quiz.i]];
+    if (!q || quiz.judged) return;
+    if (q.kind === 'tf') {
+      if (k === '1' || low === 'a') { e.preventDefault(); handlePick('T'); }
+      else if (k === '2' || low === 'b') { e.preventDefault(); handlePick('F'); }
+    } else {
+      const map = { a: 0, b: 1, c: 2, d: 3, '1': 0, '2': 1, '3': 2, '4': 3 };
+      if (Object.prototype.hasOwnProperty.call(map, low)) {
+        e.preventDefault();
+        handlePick('ABCD'[map[low]]);
+      }
+    }
+  });
+}
+
+/* =========================================================
+   10. 启动
+   ========================================================= */
+(function init() {
+  document.body.classList.toggle('cloze', state.cloze);
+  $('clozeToggle').checked = state.cloze;
+
+  renderStats();
+  renderFilter();
+  renderChapters();
+  renderCard();
+  setMode('seq');
+  switchTab(progress.tab === 'cards' || progress.tab === 'quiz' ? progress.tab : 'read');
+  bindEvents();
+})();
+</script>
+</body>
+</html>
