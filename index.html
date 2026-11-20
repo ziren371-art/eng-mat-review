@@ -129,6 +129,7 @@ main{padding:14px 12px 40px;max-width:880px;margin:0 auto}
 /* ============ BLOCK ============ */
 .blk{padding:0 13px 4px}
 .blk:last-child{padding-bottom:14px}
+.h-blk{padding-bottom:0}
 .blk-h{position:relative;font-size:15px;font-weight:800;color:var(--ink);margin:16px 0 8px;padding-left:10px;line-height:1.4}
 .blk-h::before{content:"";position:absolute;left:0;top:2px;bottom:2px;width:3px;border-radius:3px;background:linear-gradient(180deg,var(--accent-l),var(--ink))}
 .li{position:relative;margin:7px 0;padding-left:13px;font-size:15px;line-height:1.78;color:#2C3A4B}
@@ -175,6 +176,20 @@ main{padding:14px 12px 40px;max-width:880px;margin:0 auto}
 .bar-track{height:9px;background:#EDF2F8;border-radius:6px;overflow:hidden}
 .bar-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#8CBBE4,#2B6CB0)}
 .bar-v{color:var(--muted);font-size:10.5px;text-align:right;white-space:nowrap}
+
+/* ============ 课件原图 ============ */
+.fig{display:grid;grid-template-columns:1fr;gap:10px;margin:4px 0 0}
+.fig.two{grid-template-columns:1fr 1fr}
+.shot{margin:0;padding:6px;background:#fff;border:1px solid #E4EAF2;border-radius:11px;box-shadow:0 1px 5px rgba(27,54,93,.05);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.shot img{display:block;width:100%;height:auto;border-radius:7px;cursor:zoom-in}
+.fig-cap{margin:8px 2px 0;text-align:center;font-size:13px;line-height:1.6;color:var(--accent);font-weight:600}
+@media (max-width:640px){.fig.two{grid-template-columns:1fr}}
+
+/* 图片灯箱 */
+.lightbox{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:14px;background:rgba(10,20,34,.95);cursor:zoom-out}
+.lightbox.show{display:flex;animation:fade .16s ease}
+.lightbox img{max-width:100%;max-height:90vh;width:auto;height:auto;border-radius:6px;box-shadow:0 20px 60px rgba(0,0,0,.55)}
+.lb-tip{position:absolute;left:0;right:0;bottom:calc(14px + env(safe-area-inset-bottom));text-align:center;font-size:11.5px;color:rgba(255,255,255,.72);letter-spacing:.5px}
 
 /* ============ CLOZE ============ */
 .blank{padding:0 2px;border-radius:4px;transition:background .16s,color .16s}
@@ -488,6 +503,11 @@ body.cloze .tips .blank.revealed{background:#FFF3C4}
   本页数据仅存于你的浏览器本地，换设备不同步 · 建议添加到主屏幕使用
 </div>
 
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="课件原图放大">
+  <img id="lbImg" alt="">
+  <div class="lb-tip">点击任意位置关闭</div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -564,6 +584,9 @@ const STUDY_DATA = {
             ['四大基本转变', '① 匀晶转变：液相 → 单相固溶体（L → α）\n② 共晶转变：L → α + β（恒温）\n③ 共析转变：γ → α + β（恒温）\n④ 同素异构转变：固态下随温度改变由一种晶体结构转变为另一种', '共晶与共析转变进行时，合金体系温度均[[保持恒定不变]]（结晶平台）']
           ]
         },
+        { t: 'img', imgs: [
+          { src: './images/image1.png', alt: '图2-17 纯金属结晶的冷却曲线' }
+        ], cap: '【课件原图】图2-17 纯金属结晶的冷却曲线（理论结晶温度 T0 与实际结晶温度 Tn）' },
         { t: 'qa', q: '简答 1：何谓过冷现象和过冷度？过冷度与冷却速度有何关系？',
           a: '（1）过冷现象：实际结晶温度[[低于]]理论结晶温度的现象。\n（2）过冷度：理论结晶温度与实际结晶温度的差值，即 [[ΔT = T₀ − Tₙ]]。\n（3）与冷速关系：冷却速度越快，实际结晶温度 Tn 越低，过冷度 ΔT [[越大]]；冷却速度越慢，越接近理论结晶温度 T₀（过冷度越小）。合金的结晶通常在凝固点以下一温度范围内进行。' },
         { t: 'qa', q: '简答 2：液态金属的结晶过程包括哪两步？形核方式有哪些？',
@@ -592,6 +615,10 @@ const STUDY_DATA = {
             ['莱氏体', '[[Ld / Ld′]]', '高温莱氏体 Ld：A + Fe₃C 共晶体；低温莱氏体 Ld′：[[P + Fe₃C]] 机械混合物', '共晶成分含碳量 [[4.3%]]（1148℃共晶转变产物）', '性能硬而脆（因以连续渗碳体为基体，但它是机械混合物而非化合物）']
           ]
         },
+        { t: 'img', imgs: [
+          { src: './images/image2.png', alt: '简化的铁碳合金相图（含室温组织演变链）' },
+          { src: './images/image3.png', alt: '完整的铁碳合金相图（含关键点温度与碳含量）' }
+        ], cap: '【课件原图】左：简化的铁碳合金相图（含室温组织演变链） ｜ 右：完整铁碳合金相图（含关键点温度与碳含量）' },
         { t: 'table', h: '3.2 关键点、特征线与纯铁同素异构转变',
           head: ['考点类别', '代号 / 线条', '精确数值 / 物理意义（考试填空必背）'],
           rows: [
@@ -601,6 +628,10 @@ const STUDY_DATA = {
             ['纯铁同素异构转变', 'δ-Fe ⇄ γ-Fe ⇄ α-Fe', '[[δ-Fe（bcc） ⇄ 1394℃ ⇄ γ-Fe（fcc） ⇄ 912℃ ⇄ α-Fe（bcc）]]']
           ]
         },
+        { t: 'img', imgs: [
+          { src: './images/image4.png', alt: '纯铁结晶同素异构转变式' },
+          { src: './images/image5.jpeg', alt: '铁碳相图典型合金冷却纵线（1~7号合金）' }
+        ], cap: '【课件原图】左：纯铁结晶同素异构转变式 ｜ 右：铁碳相图典型合金冷却纵线（1~7号合金）' },
         { t: 'chain', h: '3.3 随含碳量增大的 8 种室温组织演变链',
           steps: ['F', 'F+P', 'P', 'P+Fe₃CⅡ', 'P+Fe₃CⅡ+Ld′', 'Ld′', 'Ld′+Fe₃CⅠ', 'Fe₃C'],
           note: '记忆提示：从「纯铁素体」一路走到「纯渗碳体」，中间依次出现珠光体、二次渗碳体、低温莱氏体、一次渗碳体。'
@@ -637,6 +668,10 @@ const STUDY_DATA = {
           '<b>残余奥氏体（A′）</b>：奥氏体向马氏体转变时，即使冷却至 [[Mf]] 以下，总有一部分奥氏体未能转变而保留下来。',
           '<b>共析钢加热时奥氏体形成的四个阶段</b>：① [[奥氏体晶核的形成]] → ② [[奥氏体的长大]] → ③ [[残余渗碳体的溶解]] → ④ [[奥氏体成分的均匀化]]。'
         ]},
+        { t: 'img', imgs: [
+          { src: './images/image6.png', alt: '热处理工艺总分类（普通/表面/其他）' },
+          { src: './images/image7.jpeg', alt: '退火与正火加热温度范围示意图' }
+        ], cap: '【课件原图】左：热处理工艺总分类（普通/表面/其他） ｜ 右：退火与正火加热温度范围示意图' },
         { t: 'table', h: '4.2 钢的热处理「四把火」对比',
           head: ['工艺名称', '加热与冷却方式', '主要工艺目的与定位'],
           rows: [
@@ -647,7 +682,12 @@ const STUDY_DATA = {
           ]
         },
         { t: 'note', kind: 'pin', h: '亚共析钢正火与完全退火的选择原则', text: '低碳钢退火后硬度过低，切削易粘刀、表面粗糙，正火可提高硬度改善切削性；中碳钢正火硬度略高于退火，且退火周期长、成本高。因此，含碳量小于 [[0.5%]] 的碳钢一般优先选择[[正火代替完全退火]]。' },
-        { t: 'table', h: '4.3 共析钢 C 曲线 7 种冷却方式对照',
+        { t: 'h', h: '4.3 共析钢 C 曲线 7 种冷却方式对照' },
+        { t: 'img', imgs: [
+          { src: './images/image8.png', alt: '共析钢连续冷却曲线（①~⑦冷却方式）' },
+          { src: './images/image9.png', alt: '炉冷/空冷/油冷/水冷对应组织产物' }
+        ], cap: '【课件原图】左：共析钢连续冷却曲线（①~⑦冷却方式） ｜ 右：炉冷/空冷/油冷/水冷对应组织产物' },
+        { t: 'table',
           head: ['编号 · 冷却方式', '工艺名称', '转变产物'],
           rows: [
             ['①　V₁ 炉冷', '退火', '[[P]]'],
@@ -673,7 +713,11 @@ const STUDY_DATA = {
           note: '关键结论：冷速一旦大于 Vk，就能获得马氏体；Vk 与 Ps 线鼻尖相切。V₄ 分级淬火与 V₅ 等温淬火属于「先快冷（冷速 > Vk）后保温」的阶段冷却工艺，并非介于油冷与双介质之间的连续冷速。'
         },
         { t: 'note', kind: 'key', h: 'C 曲线三条关键特征线（填空必背）', text: '① <b>Vk（马氏体临界冷却速度）</b>：与 Ps 线鼻尖相切，要获得马氏体，淬火冷速必须 [[大于 Vk]]；② <b>Vk1</b>：获得[[全部珠光体]]的最大冷却速度；③ <b>KK1 线（转变中止线）</b>：冷却曲线碰到此线时，过冷奥氏体中止向珠光体型组织转变，剩余奥氏体过冷到 [[Ms]] 以下转变为马氏体。' },
-        { t: 'table', h: '4.4 等温转变产物与性能对比（必考）',
+        { t: 'h', h: '4.4 等温转变产物与性能对比（必考）' },
+        { t: 'img', imgs: [
+          { src: './images/image10.png', alt: '共析钢等温转变产物的组织形态与硬度性能' }
+        ], cap: '【课件原图】共析钢等温转变产物（珠光体/贝氏体/马氏体）的组织形态与硬度性能' },
+        { t: 'table',
           head: ['转变性质', '转变产物（符号）', '转变温度范围', '组织形态与力学性能特点'],
           rows: [
             ['扩散型转变（片间距递减，硬度递增）', '珠光体 [[P]]\n索氏体 [[S]]\n托氏体（屈氏体）[[T]]', 'A₁ ~ 650℃\n650 ~ 600℃\n600 ~ 550℃', '片间距：P（>0.3μm，HBS 最低）> S（0.1~0.3μm）> T（<0.1μm，HBS 最高）；硬度：P（17~23 HRC）< S（23~32 HRC）< T（33~40 HRC）。三者本质均为 [[F + Fe₃C 机械混合物]]，仅片层粗细不同'],
@@ -686,7 +730,11 @@ const STUDY_DATA = {
           '<b>淬硬性（看最高硬度）</b>：钢淬火后获得[[最高硬度]]的能力。主要取决于[[马氏体的含碳量]]（含碳量越高，淬火后硬度越大）。典型比较：[[65Mn > 45 > 20CrMnTi]]。',
           '<b>回火四阶段</b>：① 马氏体的分解 → ② 残余奥氏体的分解 → ③ 碳化物的转变 → ④ 渗碳体的聚集长大与铁素体相的再结晶。'
         ]},
-        { t: 'table', h: '4.6 三种回火工艺对比（调质处理）',
+        { t: 'h', h: '4.6 三种回火工艺对比（调质处理）' },
+        { t: 'img', imgs: [
+          { src: './images/image11.png', alt: '三种不同温度回火工艺比较表与调质处理公式' }
+        ], cap: '【课件原图】三种不同温度回火工艺比较表 & 调质处理黄金公式' },
+        { t: 'table',
           head: ['回火工艺', '加热温度', '回火组织', '硬度 HRC', '性能特点', '典型应用'],
           rows: [
             ['低温回火', '[[150 ~ 250℃]]', '[[M回]]（回火马氏体）', '58 ~ 64', '保持高硬度、高耐磨性，降低内应力与脆性', '刀具、模具、量具、滚动轴承、渗碳件、表面淬火件'],
@@ -710,7 +758,11 @@ const STUDY_DATA = {
         { h: '避坑指南', t: 'T10A 的 A 是「高级优质」不是铝；38CrMoAl 的 Al 是铝（原稿笔误 A1）；40Cr 含碳量是 [[0.40%]] 不是 0.45%。' }
       ],
       blocks: [
-        { t: 'p', h: '5.1 钢中常存杂质元素的影响', items: [
+        { t: 'h', h: '5.1 钢中常存杂质元素的影响' },
+        { t: 'img', imgs: [
+          { src: './images/image12.png', alt: '第5章 工业用钢分类体系、杂质元素与典型牌号速览' }
+        ], cap: '【课件原图】第5章 工业用钢分类体系、杂质元素与典型牌号速览' },
+        { t: 'p', items: [
           '<b>有益元素（Si 硅、Mn 锰）</b>：溶于铁素体 F 形成[[置换固溶体]]，产生[[固溶强化]]，提高钢的强度与硬度（Mn 还能脱氧并减弱 S 的有害作用）。',
           '<b>有害元素（P 磷、S 硫）</b>：P 使钢的韧脆转变温度升高，引起[[冷脆]]；S 形成低熔点 [[FeS 共晶体]]，在热加工时引起[[热脆]]（高温龟裂）。',
           '<b>不锈钢按组织状态分类（5 类）</b>：[[铁素体]]不锈钢、[[奥氏体]]不锈钢、[[马氏体]]不锈钢、[[双相]]不锈钢、[[沉淀硬化]]不锈钢。'
@@ -997,8 +1049,11 @@ function guideHTML() {
 }
 
 function blockHTML(b) {
+  if (b.t === 'h') {
+    return '<div class="blk h-blk"><div class="blk-h">' + fmt(b.h) + '</div></div>';
+  }
   if (b.t === 'p') {
-    return '<div class="blk"><div class="blk-h">' + esc(b.h) + '</div>' +
+    return '<div class="blk">' + (b.h ? '<div class="blk-h">' + esc(b.h) + '</div>' : '') +
       b.items.map(x => '<p class="li">' + fmt(x) + '</p>').join('') + '</div>';
   }
   if (b.t === 'table') {
@@ -1010,7 +1065,7 @@ function blockHTML(b) {
     /* 列多或单格文字长 → 小屏折叠为卡片式，避免挤成豆腐块 */
     const stack = (n >= 5 || avg > 26) ? ' stack' : '';
     const w = n >= 5 ? n * 100 : (n === 4 ? 420 : 310);
-    return '<div class="blk"><div class="blk-h">' + esc(b.h) + '</div>' +
+    return '<div class="blk">' + (b.h ? '<div class="blk-h">' + esc(b.h) + '</div>' : '') +
       '<div class="tw' + stack + '"><table style="min-width:' + w + 'px"><thead><tr>' +
       b.head.map(h => '<th>' + fmt(h) + '</th>').join('') +
       '</tr></thead><tbody>' +
@@ -1036,6 +1091,13 @@ function blockHTML(b) {
         '<div class="bar-track"><div class="bar-fill" style="width:' + r.w + '%"></div></div>' +
         '<span class="bar-v">' + fmt(r.v) + '</span></div>').join('') +
       '</div>' + (b.note ? '<div class="tbl-note">' + fmt(b.note) + '</div>' : '') + '</div>';
+  }
+  if (b.t === 'img') {
+    const imgs = b.imgs || [];
+    return '<div class="blk"><div class="fig' + (imgs.length > 1 ? ' two' : '') + '">' +
+      imgs.map(im => '<figure class="shot"><img src="' + esc(im.src) + '" alt="' + esc(im.alt) +
+        '" loading="lazy" decoding="async"></figure>').join('') +
+      '</div>' + (b.cap ? '<div class="fig-cap">' + fmt(b.cap) + '</div>' : '') + '</div>';
   }
   return '';
 }
@@ -1463,6 +1525,26 @@ function copyText(text) {
 }
 
 /* =========================================================
+   8.5 课件原图灯箱（点击全屏放大，再点任意处关闭）
+   ========================================================= */
+function openLightbox(src, alt) {
+  const lb = $('lightbox'), im = $('lbImg');
+  im.src = src;
+  im.alt = alt || '';
+  lb.classList.add('show');
+  lb.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  const lb = $('lightbox');
+  if (!lb || !lb.classList.contains('show')) return;
+  lb.classList.remove('show');
+  lb.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  $('lbImg').removeAttribute('src');
+}
+
+/* =========================================================
    9. 事件绑定
    ========================================================= */
 function bindEvents() {
@@ -1520,6 +1602,15 @@ function bindEvents() {
     saveJSON(KEY.progress, progress);
     updateClozeMeta();
   });
+
+  /* --- 课件原图：点击放大 / 点击遮罩关闭 --- */
+  $('chapterList').addEventListener('click', e => {
+    const im = e.target.closest('.shot img');
+    if (!im) return;
+    openLightbox(im.getAttribute('src'), im.getAttribute('alt'));
+  });
+  $('lightbox').addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
   /* --- 翻转卡 --- */
   $('fc').addEventListener('click', () => {
